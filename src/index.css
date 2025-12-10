@@ -1,1 +1,94 @@
 @import "tailwindcss";
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/scrollbar';
+*{
+    font-family: "Poppins";
+    transition: all 0.5s ease;
+}
+/* Swiper pagination joylashuvi */
+.myCustomSwiper .swiper-pagination {
+  bottom: -5px !important;
+}
+
+/* Har bir nuqtaning stili (passive) */
+.custom-bullet {
+  width: 10px !important;
+  height: 10px !important;
+  background: #ffffff !important;   /* oq */
+  opacity: 1 !important;
+  margin: 0 6px !important;
+  border-radius: 50%;
+  border: 2px solid #FF6C14;         /* rasmdagi orange */
+}
+
+/* Active holati */
+.custom-bullet-active {
+  background: #FF6C14 !important;   /* to‘q sariq */
+  width: 13px !important;
+  height: 13px !important;
+  border-radius: 50%;
+}
+/* ===== NAVIGATION (< >) BUTTONLAR ===== */
+.myCustomSwiper .swiper-button-next,
+.myCustomSwiper .swiper-button-prev {
+  color: white !important;             /* Oq rang */
+  background: #00000066;       /* Yarim qora fon */
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px);
+}
+
+/* Ikkalasining joylashuvini to‘g‘rilash */
+.myCustomSwiper .swiper-button-prev {
+  left: 5px !important;
+}
+
+.myCustomSwiper .swiper-button-next {
+  right: 5px !important;
+}
+
+/* Iconlarni kichraytirish */
+.myCustomSwiper .swiper-button-next::after,
+.myCustomSwiper .swiper-button-prev::after {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
+
+/* ===== PAGINATION (DOTS) ===== */
+.myCustomSwiper .swiper-pagination {
+  bottom: 5px !important;               /* Nuqtani pastga tushiradi */
+}
+
+/* Passiv nuqta */
+.custom-bullet {
+  width: 9px !important;
+  height: 9px !important;
+  background: #ffffff !important;       /* Oq */
+  border: 2px solid #ff6c14;            /* Sariq chiziq (rasmga mos) */
+  opacity: 1 !important;
+  border-radius: 50%;
+  margin: 0 4px !important;
+}
+
+/* Aktiv nuqta */
+.custom-bullet-active {
+  background: #ff6c14 !important;       /* Sariq */
+  width: 11px !important;
+  height: 11px !important;
+}
+.Group{
+    width: 100%;
+    cursor: grab;
+    scrollbar-width: none;
+    -ms-overflow-style: none;   
+}
+.lable{
+  height: 80px;
+}
