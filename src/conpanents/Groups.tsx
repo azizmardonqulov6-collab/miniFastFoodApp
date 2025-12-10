@@ -83,6 +83,7 @@ export default function Groups() {
               <span onClick={() => HandleDelite()} className='w-[40px] h-[40px] absolute top-[-5px] right-[10px] flex justify-center items-center font-bold text-xl bg-[red] text-white rounded-full cursor-pointer'>x</span>
             </div>
           })}
+          {/* groups */}
         </div>
       </div>
     </div>
