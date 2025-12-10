@@ -5,7 +5,7 @@ import diriver from '../assets/image/diriver.png'
 import bag from '../assets/image/bag.png'
 export default function Groups() {
   const [popApp, setPopApp] = useState(false);
-  const { products, order, addToOrder, removeFromOrder, addSelect, selected, increaseQuantity, DescreaseQuantity } = useStore();
+  const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity } = useStore();
   function HandleClick(item: any): void {
     addSelect(item);
     setPopApp(true);
