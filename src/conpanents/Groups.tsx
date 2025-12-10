@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { LuMoveRight } from "react-icons/lu";
 import { useStore } from '../constanta/CardStorage.ts'
 import diriver from '../assets/image/diriver.png'

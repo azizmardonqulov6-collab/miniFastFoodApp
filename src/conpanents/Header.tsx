@@ -1,4 +1,3 @@
-import React from 'react'
 import user from '../assets/header/user.png'
 import map from '../assets/header/map.png'
 import orderiCON from '../assets/header/savat.png'

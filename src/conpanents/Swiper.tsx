@@ -1,4 +1,3 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import burgerCombo from '../assets/swiper/burger-conbo.png'
 import lavashCombo from '../assets/swiper/lavash-conbo.png'
