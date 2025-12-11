@@ -73,6 +73,7 @@ export default function Groups() {
               <div className="PopApp-lable w-full  flex flex-col gap-[8px] h-max bg-white pt-[30px] px-[20px] rounded-b-[37px]">
                 <h2 className='text-[22px] text-[#43655A]'>{pro.name}</h2>
                 <h3 className='text-[22px] text-[#889FA5]'>{pro.ingredients}</h3>
+    
                 <span className='text-[21px]'>{pro.price * pro.Quontity} 000 So'm</span>
                 <span className='flex gap-2 text-[21px]'><img className='w-[35px]' src={diriver} alt={diriver} /> Davtavka bepull</span>
                 <div className="w-full flex gap-3 justify-between py-[29px] ">
@@ -83,9 +84,14 @@ export default function Groups() {
               <span onClick={() => HandleDelite()} className='w-[40px] h-[40px] absolute top-[-5px] right-[10px] flex justify-center items-center font-bold text-xl bg-[red] text-white rounded-full cursor-pointer'>x</span>
             </div>
           })}
-          {/* groups */}
+
         </div>
       </div>
+      {order && <div className='order flex flex-col gap-3'>
+                    {order.map(pro =>{
+                      return <div><span><img src={pro.image} alt={pro.image} /></span><span>{pro.ingredients}</span><br /><span>{pro.Quontity}</span> <span>{pro.price} 000</span></div>
+                    })}
+                </div>}
     </div>
 
   )
