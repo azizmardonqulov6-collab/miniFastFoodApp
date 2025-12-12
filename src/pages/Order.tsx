@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import deleteImg from '../assets/image/rent/fluent_delete-24-filled.png'
 import BackImg from '../assets/image/rent/mingcute_left-fill.png'
 import { useStore } from '../constanta/CardStorage.ts'
@@ -6,7 +5,7 @@ import type { Item } from '../constanta/CardStorage.ts'
 import { Link } from 'react-router-dom';
 import notFOund from '../assets/image/notFound.png'
 export default function FoodOrderCart() {
-  const { products, order, addToOrder, addSelect, selected, increaseQuantity2, DescreaseQuantity2, getOrderTotal, removeFromOrder }: any = useStore();
+  const { order,  increaseQuantity2, DescreaseQuantity2, getOrderTotal, removeFromOrder }: any = useStore();
 
   const formatPrice = (price: any) => {
     return price.toLocaleString('uz-UZ');
