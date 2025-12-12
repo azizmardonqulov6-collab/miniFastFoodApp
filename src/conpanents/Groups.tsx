@@ -4,6 +4,7 @@ import { useStore } from '../constanta/CardStorage.ts'
 import diriver from '../assets/image/diriver.png'
 import bag from '../assets/image/bag.png'
 import bagWhite from '../assets/image/bag-white.png'
+import { Link } from 'react-router-dom';
 export default function Groups() {
   const [popApp, setPopApp] = useState(false);
   const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity ,getOrderTotal} : any = useStore();
@@ -82,7 +83,9 @@ export default function Groups() {
                 <span className='text-[21px]'>{pro.price  * pro.Quontity} 000 So'm</span>
                 <span className='flex gap-2 text-[21px]'><img className='w-[35px]' src={diriver} alt={diriver} /> Davtavka bepull</span>
                 <div className="w-full flex gap-3 justify-between py-[29px] ">
-                  <span className='w-1/2 h-[54px] border-2 border-[#889FA5] rounded-full flex justify-between items-center px-[2px] py-[3px]'><span onClick={() => HandleDec(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#8EA39C] flex justify-center items-center text-white cursor-pointer'>-</span><span>{pro.Quantity}</span><span onClick={() => HandleInc(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span></span>
+                  <span className='w-1/2 h-[54px] border-2 border-[#889FA5] rounded-full flex justify-between items-center px-[2px] py-[3px]'>
+                    <span onClick={() => HandleDec(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#8EA39C] flex justify-center items-center text-white cursor-pointer'>-</span>
+                    <span>{pro.Quontity}</span><span onClick={() => HandleInc(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span></span>
                   <span onClick={()=>HandleSubmit()} className='w-1/2 flex justify-between items-center px-[14px] bg-[#43655A] rounded-full text-[16px] text-white px-2 cursor-pointer'><img className='w-[21px] h-fit ' src={bag} alt={bag} /> Savatga solish</span>
                 </div>
               </div>
@@ -100,7 +103,7 @@ export default function Groups() {
                               <LuMoveRight  />
                           </div>
                           <div className="cur">
-                            <span className='w-full h-[50px] rounded-[10px] flex justify-between items-center bg-[#43655A] px-5'><img className='w-[20px] h-fit' src={bagWhite} alt={bagWhite} /> <div className="text-white text-[17px]">{getOrderTotal()} 000 so'm</div><span></span></span>
+                            <Link to="/order" className='w-full h-[50px] rounded-[10px] flex justify-between items-center bg-[#43655A] px-5'><img className='w-[20px] h-fit' src={bagWhite} alt={bagWhite} /> <div className="text-white text-[17px]">{getOrderTotal()} 000 so'm</div><span></span></Link>
                           </div>
                           <h3 className='text-center text-[13px]'>Savatga solib rasmiylashtiring</h3>
                       </div>
