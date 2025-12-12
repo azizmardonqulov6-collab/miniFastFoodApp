@@ -30,7 +30,9 @@ export interface StoreState {
   removeProduct: (id: number) => void;
 
   increaseQuantity: (id: number) => void;
+  increaseQuantity2: (id: number) => void;
   DescreaseQuantity: (id: number) => void;
+  DescreaseQuantity2: (id: number) => void;
 
 }
 
@@ -87,7 +89,7 @@ export const useStore = create<StoreState>((set, get) => ({
       name: "Lavashlar",
       items: [
         {
-          id: 1,
+          id: 5,
           name: "Mini lavash",
           price: 28,
           presence: true,
@@ -96,7 +98,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 2,
+          id: 6,
           name: "Katta lavash",
           price: 35,
           presence: true,
@@ -105,7 +107,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 3,
+          id: 7,
           name: "Tovuq lavash",
           price: 30,
           presence: true,
@@ -114,7 +116,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 4,
+          id: 8,
           name: "Pishloqli lavash",
           price: 33,
           presence: true,
@@ -131,7 +133,7 @@ export const useStore = create<StoreState>((set, get) => ({
       name: "Hotdoglar",
       items: [
         {
-          id: 1,
+          id: 9,
           name: "Oddiy hotdog",
           price: 18,
           presence: true,
@@ -140,7 +142,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 2,
+          id: 10,
           name: "Double hotdog",
           price: 24,
           presence: true,
@@ -149,7 +151,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 3,
+          id: 11,
           name: "Tovuq hotdog",
           price: 20,
           presence: true,
@@ -166,7 +168,7 @@ export const useStore = create<StoreState>((set, get) => ({
       name: "Burgerlar",
       items: [
         {
-          id: 1,
+          id: 12,
           name: "Classic burger",
           price: 35,
           presence: true,
@@ -175,7 +177,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 2,
+          id: 13,
           name: "Chicken burger",
           price: 32,
           presence: true,
@@ -184,7 +186,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 3,
+          id: 14,
           name: "Cheese burger",
           price: 30,
           presence: true,
@@ -193,7 +195,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 4,
+          id: 15,
           name: "Double burger",
           price: 48,
           presence: true,
@@ -210,7 +212,7 @@ export const useStore = create<StoreState>((set, get) => ({
       name: "Pitsalar",
       items: [
         {
-          id: 1,
+          id: 16,
           name: "Pepperoni pizza",
           price: 58,
           presence: true,
@@ -219,7 +221,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 2,
+          id: 17,
           name: "Tovuqli pizza",
           price: 52,
           presence: true,
@@ -228,7 +230,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 3,
+          id: 18,
           name: "Go'shtli pizza",
           price: 60,
           presence: true,
@@ -237,7 +239,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 4,
+          id: 19,
           name: "Vegetarian pizza",
           price: 50,
           presence: true,
@@ -246,7 +248,7 @@ export const useStore = create<StoreState>((set, get) => ({
           Quontity: 1,
         },
         {
-          id: 5,
+          id: 20,
           name: "Mix pizza",
           price: 65,
           presence: true,
@@ -287,9 +289,25 @@ export const useStore = create<StoreState>((set, get) => ({
           : item
       ),
     })),
+  increaseQuantity2: (productId: number): void =>
+    set((state) => ({
+      order: state.order.map((item) =>
+        item.id === productId
+          ? { ...item, Quontity: item.Quontity + 1 }
+          : item
+      ),
+    })),
   DescreaseQuantity: (productId: number): void =>
     set((state) => ({
       selected: state.selected.map((item) =>
+        item.id === productId
+          ? { ...item, Quontity: item.Quontity - 1 }
+          : item
+      ),
+    })),
+  DescreaseQuantity2: (productId: number): void =>
+    set((state) => ({
+      order: state.order.map((item) =>
         item.id === productId
           ? { ...item, Quontity: item.Quontity - 1 }
           : item

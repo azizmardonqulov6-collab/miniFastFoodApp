@@ -85,7 +85,9 @@ export default function Groups() {
                 <div className="w-full flex gap-3 justify-between py-[29px] ">
                   <span className='w-1/2 h-[54px] border-2 border-[#889FA5] rounded-full flex justify-between items-center px-[2px] py-[3px]'>
                     <span onClick={() => HandleDec(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#8EA39C] flex justify-center items-center text-white cursor-pointer'>-</span>
-                    <span>{pro.Quontity}</span><span onClick={() => HandleInc(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span></span>
+                    <span>{pro.Quontity}</span>
+                  <span onClick={() => HandleInc(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span>
+                  </span>
                   <span onClick={()=>HandleSubmit()} className='w-1/2 flex justify-between items-center px-[14px] bg-[#43655A] rounded-full text-[16px] text-white px-2 cursor-pointer'><img className='w-[21px] h-fit ' src={bag} alt={bag} /> Savatga solish</span>
                 </div>
               </div>

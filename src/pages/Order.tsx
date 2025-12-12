@@ -1,17 +1,22 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import deleteImg from '../assets/image/rent/fluent_delete-24-filled.png'
 import BackImg from '../assets/image/rent/mingcute_left-fill.png'
-import  {useStore} from '../constanta/CardStorage.ts'
-import type {Item} from '../constanta/CardStorage.ts'
+import { useStore } from '../constanta/CardStorage.ts'
+import type { Item } from '../constanta/CardStorage.ts'
+import { Link } from 'react-router-dom';
+import notFOund from '../assets/image/notFound.png'
 export default function FoodOrderCart() {
-  const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity ,getOrderTotal} : any = useStore();
-  const total = 110000;
- 
-  const formatPrice = (price : any) => {
+  const { products, order, addToOrder, addSelect, selected, increaseQuantity2, DescreaseQuantity2, getOrderTotal, removeFromOrder }: any = useStore();
+
+  const formatPrice = (price: any) => {
     return price.toLocaleString('uz-UZ');
   };
-  const Price = order.map((pro : Item) =>{
+  const Price = order.map((pro: Item) => {
     return pro.price
+  })
+
+  const Order1 = order.map((pro: Item) => {
+    return pro.Quontity
   })
   // Handler functions - siz implement qilasiz
   const handleBack = () => {
@@ -21,41 +26,50 @@ export default function FoodOrderCart() {
     // Clear cart logic
   };
 
-  const handleIncrement = (id : any)  => {
-    // Increment quantity logic
-  };
+  function HandleInc(id: number): void {
+    increaseQuantity2(id)
+  }
+  function HandleDec(id: number): void {
+    let item = order.find((pro: any) => {
+      return pro.id === id
+    })
 
-  const handleDecrement = (id : any)  => {
-    // Decrement quantity logic
-  };
+    if (!item) { return }
+
+    if (item.Quontity > 1) {
+      DescreaseQuantity2(id);
+    } else {
+      removeFromOrder(id)
+    }
+  }
 
   const handleCheckout = () => {
     // Proceed to checkout logic
   };
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen ">
       <div className="w-full h-full  bg-white flex flex-col items-center justify-between">
         {/* Header */}
         <div className="w-full bg-white  flex items-center justify-between border-b-2 border-[#A9BCB6] pb-4">
-          <button 
+          <Link to="/"
             onClick={handleBack}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
             <img className='w-[25px]' src={BackImg} alt={BackImg} />
-          </button>
+          </Link>
           <h1 className="text-xl text-gray-800">Savatcha</h1>
-          <button 
+          <button
             onClick={handleClearCart}
             className="p-2 hover:bg-red-50 rounded-full transition-colors"
           >
-          <img className='w-[25px]' src={deleteImg} alt={deleteImg} />
+            <img className='w-[25px]' src={deleteImg} alt={deleteImg} />
           </button>
         </div>
 
         {/* Order Items */}
-        <div className=" py-3 flex flex-col gap-4 grow">
-          {order.map((item  : Item) => (
+        {order.length > 0 ? <div className=" py-3 flex flex-col gap-4 grow">
+          {order.map((item: Item) => (
             <div key={item.id} className="bg-white rounded-2xl py-4  flex items-center gap-4 shadow-gray-100 shadow">
               {/* Product Image */}
               <div className="w-20 h-20">
@@ -68,37 +82,43 @@ export default function FoodOrderCart() {
                   {item.name}
                 </h3>
                 <p className="text-[#43655A] font-semibold text-base">
-                  {formatPrice(item.price)}  So'm
+                  {formatPrice(item.price)} 000  So'm
                 </p>
               </div>
 
               {/* Quantity Controls */}
               <span className='w-[130px] h-[45px] border-2 border-[#889FA5] rounded-full flex justify-between items-center px-[2px] py-[3px]'>
-                <span onClick={() => handleDecrement(item.id)} className='w-[40px] h-[40px] rounded-full bg-[#8EA39C] flex justify-center items-center text-white cursor-pointer'>-</span><span>{item.Quontity}</span>
-                <span onClick={() => handleIncrement(item.id)} className='w-[40px] h-[40px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span>
+                <span onClick={() => HandleDec(item.id)} className='w-[40px] h-[40px] rounded-full bg-[#8EA39C] flex justify-center items-center text-white cursor-pointer'>-</span>
+                <span>{item.Quontity}</span>
+                <span onClick={() => HandleInc(item.id)} className='w-[40px] h-[40px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span>
               </span>
             </div>
           ))}
         </div>
+        : <div className='w-full h-screen flex flex-col grow gap-5 justify-center items-center'>
+            <img className='w-[150px]' src={notFOund} alt={notFOund} />
+            <h2 className='text-xl'>Hech Narsa Topilmadi</h2>
+          </div>
+        }
 
         {/* Footer */}
         <div className="w-full pt-6 bg-white border-t border-[#A9BCB6] ">
           {/* Total */}
           <div className="flex w-full justify-between">
-                      <div className="flex flex-col mb-4">
-            <span className="text-gray-600 text-l">Umumiy</span>
-            <span className="text-xl font-bold text-gray-900">
-              {getOrderTotal(Price)} 000  So'm
-            </span>
-          </div>
+            <div className="flex flex-col mb-4">
+              <span className="text-gray-600 text-l">Umumiy</span>
+              <span className="text-xl font-bold text-gray-900">
+                {getOrderTotal(Price)} 000  So'm
+              </span>
+            </div>
 
-          {/* Order Button */}
-          <button 
-            onClick={handleCheckout}
-            className="w-[150px] h-[50px] bg-[#43655A] rounded-[10px] text-white"
-          >
-            Davom Etish
-          </button>
+            {/* Order Button */}
+            <button
+              onClick={handleCheckout}
+              className="w-[150px] h-[50px] bg-[#43655A] rounded-[10px] text-white"
+            >
+              Davom Etish
+            </button>
           </div>
 
           {/* Bot Tag */}
