@@ -14,9 +14,6 @@ export default function FoodOrderCart() {
     return pro.price
   })
 
-  const Order1 = order.map((pro: Item) => {
-    return pro.Quontity
-  })
   // Handler functions - siz implement qilasiz
   const handleBack = () => {
     // Back navigation logic
