@@ -1,14 +1,16 @@
-import Header from './conpanents/Header.tsx'
-import Swiper from './conpanents/Swiper.tsx'
-import Groups from './conpanents/Groups.tsx'
-
+import { BrowserRouter , Routes , Route } from "react-router-dom"
+import Home from "./pages/Home"
+import Order from './pages/Order'
 export default function App() {
   return (
     <div className="w-full flex justify-center ">
       <div className='App w-[400px] px-6 py-6 flex flex-col gap-4 relative'>
-        <Header />
-        <Swiper />
-        <Groups />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/order" element={<Order />} />
+            </Routes>
+          </BrowserRouter>
       </div>
     </div>
   )

@@ -7,7 +7,7 @@ import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
 
 const MySwiperComponent = () => {
   return (
-    <div className='mb-6'>
+    <div className='mb-6 pt-3'>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar]}
         spaceBetween={50}

@@ -29,11 +29,12 @@ export interface StoreState {
   addProduct: (product: ProductCategory) => void;
   removeProduct: (id: number) => void;
 
-  increaseQuantity: (id: number) => void;   // 🔥 qo‘shildi
-  DescreaseQuantity: (id: number) => void;   // 🔥 qo‘shildi
+  increaseQuantity: (id: number) => void;
+  DescreaseQuantity: (id: number) => void;
+
 }
 
-export const useStore = create<StoreState>((set) => ({
+export const useStore = create<StoreState>((set, get) => ({
 
   products: [
     {
@@ -258,7 +259,7 @@ export const useStore = create<StoreState>((set) => ({
   ],
 
   order: [],
-  selected:[] ,
+  selected: [],
   addSelect: (product) => set(() => ({
     selected: [product]
   })),
@@ -294,4 +295,10 @@ export const useStore = create<StoreState>((set) => ({
           : item
       ),
     })),
+  getOrderTotal: (): number =>
+    get().order.reduce((total, item) => {
+      return total + item.price * item.Quontity;
+    }, 0),
+
+
 }));
