@@ -4,7 +4,7 @@ import Order from './pages/Order'
 export default function App() {
   return (
     <div className="w-full flex justify-center ">
-      <div className='App w-[400px] px-6 py-6 flex flex-col gap-4 relative'>
+      <div className='App w-[380px] px-6 py-6 flex flex-col gap-4 relative'>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />} />

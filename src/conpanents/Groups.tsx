@@ -69,14 +69,14 @@ export default function Groups() {
         })
       }
       <div className={`select w-full h-screen fixed  left-0 z-5 flex  justify-center items-end inset-0 ${popApp ? "top-0" : "top-[-150vh]"}`}>
-        <div className="w-[400px] h-screen relative top-0 flex items-end">
+        <div className="w-[380px] h-screen relative top-0 flex items-end">
           <div onClick={() => HandleDelite()} className="w-full h-full bg-[#00000066] absolute left-0 top-0 cursor-pointercb"></div>
           {selected.map((pro :any) => {
             return <div key={pro.id} className="PopApp w-full h-fit flex flex-col relative">
-              <div className="img w-full py-5 bg-[#DADDE2] rounded-t-[37px] flex justify-center ">
+              <div className="img w-full py-3 bg-[#DADDE2] rounded-t-[37px] flex justify-center ">
                 <img className='w-[250px] ' src={pro.image} alt={pro.image} />
               </div>
-              <div className="PopApp-lable w-full  flex flex-col gap-[8px] h-max bg-white pt-[30px] px-[20px] rounded-b-[37px]">
+              <div className="PopApp-lable w-full  flex flex-col gap-[8px] h-max bg-white pt-[20px] px-[10px] rounded-b-[37px]">
                 <h2 className='text-[22px] text-[#43655A]'>{pro.name}</h2>
                 <h3 className='text-[22px] text-[#889FA5]'>{pro.ingredients}</h3>
     
@@ -88,7 +88,7 @@ export default function Groups() {
                     <span>{pro.Quontity}</span>
                   <span onClick={() => HandleInc(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span>
                   </span>
-                  <span onClick={()=>HandleSubmit()} className='w-1/2 flex justify-between items-center px-[14px] bg-[#43655A] rounded-full text-[16px] text-white px-2 cursor-pointer'><img className='w-[21px] h-fit ' src={bag} alt={bag} /> Savatga solish</span>
+                  <span onClick={()=>HandleSubmit()} className='w-1/2 flex justify-between items-center px-[14px] bg-[#43655A] rounded-full text-[15px] text-white px-2 cursor-pointer'><img className='w-[21px] h-fit ' src={bag} alt={bag} /> Savatga solish</span>
                 </div>
               </div>
               <span onClick={() => HandleDelite()} className='w-[40px] h-[40px] absolute top-[-5px] right-[10px] flex justify-center items-center font-bold text-xl bg-[red] text-white rounded-full cursor-pointer'>x</span>
