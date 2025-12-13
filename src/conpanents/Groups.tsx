@@ -12,6 +12,7 @@ export default function Groups() {
     addSelect(item);
     setPopApp(true);
   }
+
   function HandleDelite() {
     setPopApp(false);
   }
@@ -40,6 +41,7 @@ export default function Groups() {
     })
 
   }
+  console.log(order.length);
 
 
   return (

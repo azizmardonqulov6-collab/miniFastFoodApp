@@ -6,7 +6,6 @@ import RemoveInfo from '../conpanents/RemoveInfo.tsx';
 import SecendHeader from '../conpanents/SecendHeader.tsx';
 export default function FoodOrderCart() {
   const [DelInfo , setDelInfo]= useState<boolean>(false)
-  const [name , setName] = useState("Savatcha")
   const { order,  increaseQuantity2, DescreaseQuantity2, getOrderTotal, removeFromOrder ,removeOrder }: any = useStore();
   const formatPrice = (price: any) => {
     return price.toLocaleString('uz-UZ');
@@ -17,7 +16,6 @@ export default function FoodOrderCart() {
 
   // Handler functions - siz implement qilasiz
   const handleBack = () :void => {
-    setDelInfo(true)
     removeOrder()
   };
   const handleClearCart = () => {
@@ -47,10 +45,9 @@ export default function FoodOrderCart() {
 
   return (
     <div className="w-full h-screen ">
-      <h1 className='text-center text-gray-300 pt-2 pb-5'>@fastfood500bot</h1>
       <div className="w-full h-full  bg-white flex flex-col items-center justify-between">
         {/* Header */}
-        <SecendHeader handleBack={handleBack} handleClearCart={handleClearCart} name={name} />
+        <SecendHeader handleBack={handleBack} handleClearCart={handleClearCart} name="Savatcha" />
 
         {/* Order Items */}
         {order.length > 0 ? <div className=" py-3 flex flex-col gap-4 grow">

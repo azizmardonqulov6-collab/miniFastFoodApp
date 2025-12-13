@@ -5,14 +5,14 @@ import type { JSX } from 'react'
 import { Link } from 'react-router-dom'
 function Header(): JSX.Element {
   return (
-    <header className='w-full h-[60px] border-2 border-[#B1BDC5] flex  justify-between items-center rounded-[20px] pr-6 pl-3'>
+    <header className='w-full h-[60px] border-2 border-[#B1BDC5] flex  justify-between items-center rounded-[20px] pr-6 pl-3 mb-3'>
         <span className='w-[40px] cursor-pointer'>
           <img className='w-full' src={user} alt={user} />
         </span>
-        <span className='flex gap-2 cursor-pointer'>
+        <Link to='/map' className='flex gap-2 cursor-pointer'>
           <img className='w-[20px]' src={map} alt={map} />
           <h2 className='text-[15px] font-medium'>Manzilingizni Kiriting</h2>
-        </span>
+        </Link>
         <Link to="/order" className='w-[23px] cursor-pointer'>
           <img className='w-full' src={orderiCON} alt={orderiCON} />
         </Link>
