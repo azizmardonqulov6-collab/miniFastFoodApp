@@ -45,6 +45,7 @@ export default function FoodOrderCart() {
 
   return (
     <div className="w-full h-screen ">
+      <h1 className='text-center text-gray-500 pt-2 pb-5'>@fastfood500bot</h1>
       <div className="w-full h-full  bg-white flex flex-col items-center justify-between">
         {/* Header */}
         <div className="w-full bg-white  flex items-center justify-between border-b-2 border-[#A9BCB6] pb-4">
