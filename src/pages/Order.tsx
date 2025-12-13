@@ -4,8 +4,11 @@ import { useStore } from '../constanta/CardStorage.ts'
 import type { Item } from '../constanta/CardStorage.ts'
 import { Link } from 'react-router-dom';
 import notFOund from '../assets/image/notFound.png'
+import { useState } from 'react';
+import RemoveInfo from '../conpanents/RemoveInfo.tsx';
 export default function FoodOrderCart() {
-  const { order,  increaseQuantity2, DescreaseQuantity2, getOrderTotal, removeFromOrder }: any = useStore();
+  const [DelInfo , setDelInfo]= useState<boolean>(false)
+  const { order,  increaseQuantity2, DescreaseQuantity2, getOrderTotal, removeFromOrder ,removeOrder }: any = useStore();
 
   const formatPrice = (price: any) => {
     return price.toLocaleString('uz-UZ');
@@ -19,7 +22,7 @@ export default function FoodOrderCart() {
     // Back navigation logic
   };
   const handleClearCart = () => {
-    // Clear cart logic
+    setDelInfo(true)
   };
 
   function HandleInc(id: number): void {
@@ -45,7 +48,7 @@ export default function FoodOrderCart() {
 
   return (
     <div className="w-full h-screen ">
-      <h1 className='text-center text-gray-500 pt-2 pb-5'>@fastfood500bot</h1>
+      <h1 className='text-center text-gray-300 pt-2 pb-5'>@fastfood500bot</h1>
       <div className="w-full h-full  bg-white flex flex-col items-center justify-between">
         {/* Header */}
         <div className="w-full bg-white  flex items-center justify-between border-b-2 border-[#A9BCB6] pb-4">
@@ -78,16 +81,16 @@ export default function FoodOrderCart() {
                 <h3 className="font-medium text-gray-800 text-sm leading-tight mb-1">
                   {item.name}
                 </h3>
-                <p className="text-[#43655A] font-semibold text-base">
+                <p className="text-[#43655A] font-semibold text-[13px] text-base">
                   {formatPrice(item.price)} 000  So'm
                 </p>
               </div>
 
               {/* Quantity Controls */}
-              <span className='w-[130px] h-[45px] border-2 border-[#889FA5] rounded-full flex justify-between items-center px-[2px] py-[3px]'>
-                <span onClick={() => HandleDec(item.id)} className='w-[40px] h-[40px] rounded-full bg-[#8EA39C] flex justify-center items-center text-white cursor-pointer'>-</span>
-                <span>{item.Quontity}</span>
-                <span onClick={() => HandleInc(item.id)} className='w-[40px] h-[40px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span>
+              <span className='w-[110px] h-[40px] border-2 border-[#889FA5] rounded-full flex justify-between items-center px-[2px] py-[3px]'>
+                <span onClick={() => HandleDec(item.id)} className='w-[35px] h-[35px] rounded-full bg-[#8EA39C] flex justify-center items-center text-white cursor-pointer'>-</span>
+                <span className='text-[13px]'>{item.Quontity}</span>
+                <span onClick={() => HandleInc(item.id)} className='w-[35px] h-[35px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span>
               </span>
             </div>
           ))}
@@ -122,6 +125,7 @@ export default function FoodOrderCart() {
           <div className="text-center mt-4">
             <span className="text-gray-400 text-sm italic">FastFood500_bot</span>
           </div>
+          {DelInfo ? <RemoveInfo setDelInfo={setDelInfo} removeOrder={removeOrder} /> : ""}
         </div>
       </div>
     </div>

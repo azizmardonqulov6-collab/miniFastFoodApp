@@ -33,7 +33,7 @@ export interface StoreState {
   increaseQuantity2: (id: number) => void;
   DescreaseQuantity: (id: number) => void;
   DescreaseQuantity2: (id: number) => void;
-
+  removeOrder: () => void;
 }
 
 export const useStore = create<StoreState>((set, get) => ({
@@ -271,6 +271,9 @@ export const useStore = create<StoreState>((set, get) => ({
 
   removeFromOrder: (id) => set((state) => ({
     order: state.order.filter(item => item.id !== id)
+  })),
+  removeOrder: () => set(() => ({
+    order: []
   })),
 
   addProduct: (product) => set((state) => ({
