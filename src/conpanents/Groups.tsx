@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+import { useState } from 'react'
 import { LuMoveRight } from "react-icons/lu";
 import { useStore } from '../constanta/CardStorage.ts'
 import diriver from '../assets/image/diriver.png'
@@ -7,7 +7,7 @@ import bagWhite from '../assets/image/bag-white.png'
 import { Link } from 'react-router-dom';
 export default function Groups() {
   const [popApp, setPopApp] = useState(false);
-  const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity ,getOrderTotal} : any = useStore();
+  const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
   function HandleClick(item: any): void {
     addSelect(item);
     setPopApp(true);
@@ -19,7 +19,7 @@ export default function Groups() {
     increaseQuantity(id)
   }
   function HandleDec(id: number): void {
-    let item = selected.find((pro : any) => {
+    let item = selected.find((pro: any) => {
       return pro.id === id
     })
 
@@ -31,8 +31,8 @@ export default function Groups() {
       console.log("Quantity 1 dan pastga tushmaydi");
     }
   }
-  function HandleSubmit(){
-    selected.forEach((pro : any) =>{
+  function HandleSubmit() {
+    selected.forEach((pro: any) => {
       addToOrder(pro);
       console.log(order)
       setPopApp(false)
@@ -43,13 +43,13 @@ export default function Groups() {
 
 
   return (
-    <div className="w-full flex flex-col gap-10 ">
+    <div className="w-full flex flex-col gap-10">
       {
-        products.map((pro : any) => {
+        products.map((pro: any) => {
           return <div key={pro.id} className='Group flex flex-col gap-2 overflow-x-auto'>
             <div className="group-name w-full flex gap-4 items-center mb-[50px]"><h2 className='text-[20px]'>{pro.name}</h2> <span><LuMoveRight className='text-2xl' /></span></div>
-            <div className="w-fit cards flex gap-3 ">
-              {pro.items.map((item : any) => {
+            <div className="w-fit cards flex gap-3 items-center">
+              {pro.items.map((item: any) => {
                 return <div onClick={() => HandleClick(item)} key={item.id} className="card w-[150px] flex flex-col gap-3  ">
                   <div className="flex flex-col justify-center items-center gap-5 border-3 border-[#889FA5] rounded-[16px] ">
                     <div className="img h-[50px]">
@@ -63,6 +63,11 @@ export default function Groups() {
                   <span className='w-full py-3 bg-[#43655A] flex justify-center items-center text-white rounded-[16px]'>{item.price} 000 </span>
                 </div>
               })}
+              <div className="w-[60px] h-[80px] ml-4 mb-8">
+                <div className='w-[50px] h-[50px] flex justify-center items-center rounded-full  border-2 border-[#43655A] hover:bg-[#43655A] hover:text-white '>
+                  <LuMoveRight />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -71,7 +76,7 @@ export default function Groups() {
       <div className={`select w-full h-screen fixed  left-0 z-5 flex  justify-center items-end inset-0 ${popApp ? "top-0" : "top-[-150vh]"}`}>
         <div className="w-[380px] h-screen relative top-0 flex items-end">
           <div onClick={() => HandleDelite()} className="w-full h-full bg-[#00000066] absolute left-0 top-0 cursor-pointercb"></div>
-          {selected.map((pro :any) => {
+          {selected.map((pro: any) => {
             return <div key={pro.id} className="PopApp w-full h-fit flex flex-col relative">
               <div className="img w-full py-3 bg-[#DADDE2] rounded-t-[37px] flex justify-center ">
                 <img className='w-[250px] ' src={pro.image} alt={pro.image} />
@@ -79,16 +84,16 @@ export default function Groups() {
               <div className="PopApp-lable w-full  flex flex-col gap-[8px] h-max bg-white pt-[20px] px-[10px] rounded-b-[37px]">
                 <h2 className='text-[22px] text-[#43655A]'>{pro.name}</h2>
                 <h3 className='text-[22px] text-[#889FA5]'>{pro.ingredients}</h3>
-    
-                <span className='text-[21px]'>{pro.price  * pro.Quontity} 000 So'm</span>
+
+                <span className='text-[21px]'>{pro.price * pro.Quontity} 000 So'm</span>
                 <span className='flex gap-2 text-[21px]'><img className='w-[35px]' src={diriver} alt={diriver} /> Davtavka bepull</span>
                 <div className="w-full flex gap-3 justify-between py-[29px] ">
                   <span className='w-1/2 h-[54px] border-2 border-[#889FA5] rounded-full flex justify-between items-center px-[2px] py-[3px]'>
                     <span onClick={() => HandleDec(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#8EA39C] flex justify-center items-center text-white cursor-pointer'>-</span>
                     <span>{pro.Quontity}</span>
-                  <span onClick={() => HandleInc(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span>
+                    <span onClick={() => HandleInc(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#43655A]  flex justify-center items-center text-white cursor-pointer'>+</span>
                   </span>
-                  <span onClick={()=>HandleSubmit()} className='w-1/2 flex justify-between items-center px-[14px] bg-[#43655A] rounded-full text-[15px] text-white px-2 cursor-pointer'><img className='w-[21px] h-fit ' src={bag} alt={bag} /> Savatga solish</span>
+                  <span onClick={() => HandleSubmit()} className='w-1/2 flex justify-between items-center px-[14px] bg-[#43655A] rounded-full text-[15px] text-white px-2 cursor-pointer'><img className='w-[21px] h-fit ' src={bag} alt={bag} /> Savatga solish</span>
                 </div>
               </div>
               <span onClick={() => HandleDelite()} className='w-[40px] h-[40px] absolute top-[-5px] right-[10px] flex justify-center items-center font-bold text-xl bg-[red] text-white rounded-full cursor-pointer'>x</span>
@@ -98,18 +103,18 @@ export default function Groups() {
         </div>
       </div>
       {order.length > 0 && <div className='order flex flex-col gap-3 fixed bottom-5   w-[350px]'>
-                    <div className="order-rent bg-white border-1 border-[#43655A] px-5 py-3 rounded-[30px] flex flex-col gap-3">
-                          <div className="flex justify-between items-center cursor-pointer">
-                              <img className='w-[20px]' src={diriver} alt={diriver} />
-                              <h3>Dastavka  Bepul</h3>
-                              <LuMoveRight  />
-                          </div>
-                          <div className="cur">
-                            <Link to="/order" className='w-full h-[50px] rounded-[10px] flex justify-between items-center bg-[#43655A] px-5'><img className='w-[20px] h-fit' src={bagWhite} alt={bagWhite} /> <div className="text-white text-[17px]">{getOrderTotal()} 000 so'm</div><span></span></Link>
-                          </div>
-                          <h3 className='text-center text-[13px]'>Savatga solib rasmiylashtiring</h3>
-                      </div>
-                </div>}
+        <div className="order-rent bg-white border-1 border-[#43655A] px-5 py-3 rounded-[30px] flex flex-col gap-3">
+          <div className="flex justify-between items-center cursor-pointer">
+            <img className='w-[20px]' src={diriver} alt={diriver} />
+            <h3>Dastavka  Bepul</h3>
+            <LuMoveRight />
+          </div>
+          <div className="cur">
+            <Link to="/order" className='w-full h-[50px] rounded-[10px] flex justify-between items-center bg-[#43655A] px-5'><img className='w-[20px] h-fit' src={bagWhite} alt={bagWhite} /> <div className="text-white text-[17px]">{getOrderTotal()} 000 so'm</div><span></span></Link>
+          </div>
+          <h3 className='text-center text-[13px]'>Savatga solib rasmiylashtiring</h3>
+        </div>
+      </div>}
     </div>
 
   )

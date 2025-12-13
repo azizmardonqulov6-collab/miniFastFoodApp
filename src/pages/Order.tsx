@@ -1,15 +1,13 @@
-import deleteImg from '../assets/image/rent/fluent_delete-24-filled.png'
-import BackImg from '../assets/image/rent/mingcute_left-fill.png'
 import { useStore } from '../constanta/CardStorage.ts'
 import type { Item } from '../constanta/CardStorage.ts'
-import { Link } from 'react-router-dom';
 import notFOund from '../assets/image/notFound.png'
 import { useState } from 'react';
 import RemoveInfo from '../conpanents/RemoveInfo.tsx';
+import SecendHeader from '../conpanents/SecendHeader.tsx';
 export default function FoodOrderCart() {
   const [DelInfo , setDelInfo]= useState<boolean>(false)
+  const [name , setName] = useState("Savatcha")
   const { order,  increaseQuantity2, DescreaseQuantity2, getOrderTotal, removeFromOrder ,removeOrder }: any = useStore();
-
   const formatPrice = (price: any) => {
     return price.toLocaleString('uz-UZ');
   };
@@ -18,8 +16,9 @@ export default function FoodOrderCart() {
   })
 
   // Handler functions - siz implement qilasiz
-  const handleBack = () => {
-    // Back navigation logic
+  const handleBack = () :void => {
+    setDelInfo(true)
+    removeOrder()
   };
   const handleClearCart = () => {
     setDelInfo(true)
@@ -51,21 +50,7 @@ export default function FoodOrderCart() {
       <h1 className='text-center text-gray-300 pt-2 pb-5'>@fastfood500bot</h1>
       <div className="w-full h-full  bg-white flex flex-col items-center justify-between">
         {/* Header */}
-        <div className="w-full bg-white  flex items-center justify-between border-b-2 border-[#A9BCB6] pb-4">
-          <Link to="/"
-            onClick={handleBack}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <img className='w-[25px]' src={BackImg} alt={BackImg} />
-          </Link>
-          <h1 className="text-xl text-gray-800">Savatcha</h1>
-          <button
-            onClick={handleClearCart}
-            className="p-2 hover:bg-red-50 rounded-full transition-colors"
-          >
-            <img className='w-[25px]' src={deleteImg} alt={deleteImg} />
-          </button>
-        </div>
+        <SecendHeader handleBack={handleBack} handleClearCart={handleClearCart} name={name} />
 
         {/* Order Items */}
         {order.length > 0 ? <div className=" py-3 flex flex-col gap-4 grow">
