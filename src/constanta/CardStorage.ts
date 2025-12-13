@@ -265,9 +265,25 @@ export const useStore = create<StoreState>((set, get) => ({
   addSelect: (product) => set(() => ({
     selected: [product]
   })),
-  addToOrder: (product) => set((state) => ({
-    order: [...state.order, product]
-  })),
+addToOrder: (product) => set((state) => {
+  const existingProduct = state.order.find(item => item.id === product.id);
+  
+  if (existingProduct) {
+    // Agar mahsulot allaqachon order da bo'lsa, Quontity ni oshirish
+    return {
+      order: state.order.map(item =>
+        item.id === product.id
+          ? { ...item, Quontity: item.Quontity + 1 }
+          : item
+      )
+    };
+  } else {
+    // Agar mahsulot order da bo'lmasa, yangi qo'shish
+    return {
+      order: [...state.order, { ...product, Quontity: 1 }]
+    };
+  }
+}),
 
   removeFromOrder: (id) => set((state) => ({
     order: state.order.filter(item => item.id !== id)
