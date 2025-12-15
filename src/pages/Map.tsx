@@ -6,6 +6,7 @@ export default function Map() {
     const handleBack = (): void => {
         removeOrder()
     };
+
     return (
         <div>
             <SecendHeader name="Xarita ko’rsatish" handleBack={handleBack} />

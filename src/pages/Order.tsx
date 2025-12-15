@@ -4,6 +4,7 @@ import notFOund from '../assets/image/notFound.png'
 import { useState } from 'react';
 import RemoveInfo from '../conpanents/RemoveInfo.tsx';
 import SecendHeader from '../conpanents/SecendHeader.tsx';
+import { Link } from 'react-router-dom';
 export default function FoodOrderCart() {
   const [DelInfo , setDelInfo]= useState<boolean>(false)
   const { order,  increaseQuantity2, DescreaseQuantity2, getOrderTotal, removeFromOrder ,removeOrder }: any = useStore();
@@ -39,9 +40,6 @@ export default function FoodOrderCart() {
     }
   }
 
-  const handleCheckout = () => {
-    // Proceed to checkout logic
-  };
 
   return (
     <div className="w-full h-screen ">
@@ -95,12 +93,11 @@ export default function FoodOrderCart() {
             </div>
 
             {/* Order Button */}
-            <button
-              onClick={handleCheckout}
-              className="w-[150px] h-[50px] bg-[#43655A] rounded-[10px] text-white"
+            <Link to="/map"
+              className="w-[150px] h-[50px] bg-[#43655A] rounded-[10px] text-white flex justify-center items-center"
             >
               Davom Etish
-            </button>
+            </Link>
           </div>
 
           {/* Bot Tag */}
