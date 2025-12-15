@@ -12,7 +12,7 @@ export default function Groups() {
     addSelect(item);
     setPopApp(true);
   }
-
+  console.log(selected.Quantity)
   function HandleDelite() {
     setPopApp(false);
   }
@@ -36,8 +36,10 @@ export default function Groups() {
     selected.forEach((pro: any) => {
       addToOrder(pro);
       console.log(order)
+      console.log(selected.Quantity)
       setPopApp(false)
-      getOrderTotal(pro.id)
+      getOrderTotal()
+      
     })
 
   }
@@ -112,7 +114,7 @@ export default function Groups() {
             <LuMoveRight />
           </div>
           <div className="cur">
-            <Link to="/order" className='w-full h-[50px] rounded-[10px] flex justify-between items-center bg-[#43655A] px-5'><img className='w-[20px] h-fit' src={bagWhite} alt={bagWhite} /> <div className="text-white text-[17px]">{getOrderTotal()} 000 so'm</div><span></span></Link>
+            <Link to="/order" className='w-full h-[50px] rounded-[10px] flex justify-between items-center bg-[#43655A] px-5'><img className='w-[20px] h-fit' src={bagWhite} alt={bagWhite} /> <div className="text-white text-[17px]">{getOrderTotal() } 000 so'm</div><span></span></Link>
           </div>
           <h3 className='text-center text-[13px]'>Savatga solib rasmiylashtiring</h3>
         </div>
