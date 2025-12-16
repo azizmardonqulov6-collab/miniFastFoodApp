@@ -1,6 +1,7 @@
 import Header from '../conpanents/Header.tsx'
 import Swiper from '../conpanents/Swiper.tsx'
 import Groups from '../conpanents/Groups.tsx'
+import { useState } from 'react'
 
 export default function Home() {
   return (

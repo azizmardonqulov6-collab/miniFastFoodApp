@@ -85,9 +85,7 @@
 }
 .Group{
     width: 100%;
-    cursor: grab;
-    scrollbar-width: none;
-    -ms-overflow-style: none;   
+    cursor: grab;   
 }
 .lable{
   height: 80px;

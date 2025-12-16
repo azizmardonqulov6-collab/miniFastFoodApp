@@ -1,6 +1,7 @@
 import MapImg from '../assets/map/map.png'
 import { useEffect, useState } from 'react';
 import MapPicker from './MapPicker';
+import { Link } from 'react-router-dom';
 
 interface Location {
   lat: number;
@@ -29,8 +30,7 @@ async function getAddressFromCoords(lat: number, lon: number) {
     setAddress(neighbourhood);
   } else {
     setAddress(`${city || ""} ${county || ""}`.trim());
-  }
-}
+  }''}
 
 
 
@@ -75,9 +75,9 @@ async function getAddressFromCoords(lat: number, lon: number) {
 
         {location && (
           <div className="flex flex-col gap-4">
-            <div className='w-full h-[50px] rounded-[10px] font-medium flex justify-center items-center text-white bg-[#43655A]'>
-              ✓ Joylashuv tanlandi
-            </div>
+            <Link to="/" className='w-full h-[50px] rounded-[10px] font-medium flex justify-center items-center text-white bg-[#43655A]'>
+               Joylashuv tanlandi
+            </Link>
 
             <p className="text-center text-gray-600">
               📍 {address || "Manzil aniqlanmoqda..."}

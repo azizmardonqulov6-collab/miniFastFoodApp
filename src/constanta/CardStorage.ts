@@ -22,6 +22,7 @@ export interface StoreState {
   order: Item[];
   selected: Item[];
 
+
   addSelect: (product: Item) => void;
   addToOrder: (product: Item) => void;
   removeFromOrder: (id: number) => void;
@@ -262,6 +263,7 @@ export const useStore = create<StoreState>((set, get) => ({
 
   order: [],
   selected: [],
+
   addSelect: (product) => set(() => ({
     selected: [product]
   })),
@@ -336,10 +338,15 @@ addToOrder: (item) =>
       return total + item.price * item.Quontity;
     }, 0),
 
-
 }));
 
-export const useUnser = create(()=> ({
+export const useUnser = create((set)=> ({
   user:[],
+  PhoneNom: "",
+  PhoneBooleon: false,
+
+  setPhoneNom: (nomer : string) : void => set(() => ({
+    products: [nomer]
+  })),
   
 }) )
