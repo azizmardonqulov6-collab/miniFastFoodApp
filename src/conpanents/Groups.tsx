@@ -5,7 +5,24 @@ import diriver from '../assets/image/diriver.png'
 import bag from '../assets/image/bag.png'
 import bagWhite from '../assets/image/bag-white.png'
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 export default function Groups() {
+    const tg = (window as any).Telegram.WebApp;
+
+  useEffect(() => {
+    // Ilovani tayyor holatga keltirish
+    tg.ready();
+    
+    // Ilovani ekranga to'liq yoyish (shunda tepaga bo'shliq qolmaydi)
+    tg.expand();
+
+    // Vertikal yopilish (swipe-to-close) funksiyasini o'chirish
+    // Bu xususiyat yangi Telegram versiyalarida ishlaydi
+    if (tg.isVersionAtLeast('7.7')) {
+      tg.disableVerticalSwipes();
+    }
+  }, [tg]);
+
   const [popApp, setPopApp] = useState(false);
   const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
   function HandleClick(item: any): void {
