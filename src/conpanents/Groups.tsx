@@ -10,14 +10,10 @@ export default function Groups() {
     const tg = (window as any).Telegram.WebApp;
 
   useEffect(() => {
-    // Ilovani tayyor holatga keltirish
     tg.ready();
     
-    // Ilovani ekranga to'liq yoyish (shunda tepaga bo'shliq qolmaydi)
     tg.expand();
 
-    // Vertikal yopilish (swipe-to-close) funksiyasini o'chirish
-    // Bu xususiyat yangi Telegram versiyalarida ishlaydi
     if (tg.isVersionAtLeast('7.7')) {
       tg.disableVerticalSwipes();
     }
