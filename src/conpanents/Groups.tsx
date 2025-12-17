@@ -7,9 +7,10 @@ import bagWhite from '../assets/image/bag-white.png'
 import PhoneNom from '../conpanents/PhoneNom.tsx'
 import { Link } from 'react-router-dom';
 import { useEffect  } from 'react';
+import Info from './Info.tsx';
 export default function Groups() {
   const tg = (window as any).Telegram.WebApp;
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     tg.ready();
@@ -134,7 +135,8 @@ export default function Groups() {
           <h3 className='text-center text-[13px]'>Savatga solib rasmiylashtiring</h3>
         </div>
       </div>}
-       <PhoneNom isOpen ={isOpen } setIsOpen={setIsOpen} /> 
+       {isOpen && <PhoneNom isOpen ={isOpen } setIsOpen={setIsOpen} /> }
+       {/* <Info /> */}
     </div>
 
   )
