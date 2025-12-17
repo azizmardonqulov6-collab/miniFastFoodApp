@@ -4,10 +4,12 @@ import { useStore } from '../constanta/CardStorage.ts'
 import diriver from '../assets/image/diriver.png'
 import bag from '../assets/image/bag.png'
 import bagWhite from '../assets/image/bag-white.png'
+import PhoneNom from '../conpanents/PhoneNom.tsx'
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect  } from 'react';
 export default function Groups() {
-    const tg = (window as any).Telegram.WebApp;
+  const tg = (window as any).Telegram.WebApp;
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   useEffect(() => {
     tg.ready();
@@ -132,6 +134,7 @@ export default function Groups() {
           <h3 className='text-center text-[13px]'>Savatga solib rasmiylashtiring</h3>
         </div>
       </div>}
+       <PhoneNom isOpen ={isOpen } setIsOpen={setIsOpen} /> 
     </div>
 
   )
