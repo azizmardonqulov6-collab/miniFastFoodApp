@@ -7,7 +7,7 @@ import bagWhite from '../assets/image/bag-white.png'
 import PhoneNom from '../conpanents/PhoneNom.tsx'
 import { Link } from 'react-router-dom';
 import { useEffect  } from 'react';
-import Info from './Info.tsx';
+import {OpenStore} from '../constanta/CardStorage.ts'
 export default function Groups() {
   const tg = (window as any).Telegram.WebApp;
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -24,6 +24,7 @@ export default function Groups() {
 
   const [popApp, setPopApp] = useState(false);
   const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
+  const {phoneOpen} : any = OpenStore()
   function HandleClick(item: any): void {
     addSelect(item);
     setPopApp(true);
@@ -122,7 +123,7 @@ export default function Groups() {
 
         </div>
       </div>
-      {order.length > 0 && <div className='order flex flex-col gap-3 fixed bottom-5   w-[350px]'>
+      {order.length > 0 && <div className='order flex flex-col gap-3 fixed bottom-5  w-[360px] '>
         <div className="order-rent bg-white border-1 border-[#43655A] px-5 py-3 rounded-[30px] flex flex-col gap-3">
           <div className="flex justify-between items-center cursor-pointer">
             <img className='w-[20px]' src={diriver} alt={diriver} />
@@ -136,7 +137,7 @@ export default function Groups() {
         </div>
       </div>}
        {isOpen && <PhoneNom isOpen ={isOpen } setIsOpen={setIsOpen} /> }
-       {/* <Info /> */}
+       {phoneOpen ? <PhoneNom /> : ""}
     </div>
 
   )

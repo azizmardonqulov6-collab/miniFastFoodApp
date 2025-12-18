@@ -36,6 +36,10 @@ export interface StoreState {
   DescreaseQuantity2: (id: number) => void;
   removeOrder: () => void;
 }
+interface PhoneState {
+  phoneOpen: boolean;
+  setPhoneOpen: () => void;
+}
 
 export const useStore = create<StoreState>((set, get) => ({
 
@@ -350,3 +354,18 @@ export const useUnser = create((set)=> ({
   })),
   
 }) )
+
+export const OpenStore = create<PhoneState>((set) => ({
+  phoneOpen: false,
+
+  setPhoneOpen: () =>
+    set((state) => ({
+      phoneOpen: !state.phoneOpen,
+    })),
+  isInfo: false,
+
+  setIsInfo: () =>
+    set((state) => ({
+      phoneOpen: !state.phoneOpen,
+    })),
+}));

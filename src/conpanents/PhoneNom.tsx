@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import {  X } from 'lucide-react';
 import { FaPhone } from "react-icons/fa6";
+import {OpenStore} from '../constanta/CardStorage.ts'
 
 export default function PhoneInputModal() {
   const [isOpen, setIsOpen] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode] = useState('+998');
+  const {setIsInfo , setPhoneOpen} : any = OpenStore()
 
   const handlePhoneChange = (e: any) => {
     const value = e.target.value.replace(/\D/g, '');
@@ -32,6 +34,13 @@ export default function PhoneInputModal() {
       console.log(isOpen);
     }
   };
+  function handleInfo(){
+    if(phoneNumber){
+      setPhoneOpen()
+    }else{
+      setIsInfo()
+    }
+  }
 
   return (
     <div className="fixed w-full h-fit bottom-3 left-0 flex justify-center pr-4 ">
@@ -39,7 +48,7 @@ export default function PhoneInputModal() {
       <div className="flex justify-between items-center">
         <FaPhone />
         <h2 className='text-[14px]'>Telefon Nomeringiz</h2>
-        <X className='text-[14px] cursor-pointer' />
+        <X onClick={() => handleInfo()} className='text-[14px] cursor-pointer' />
       </div>
       <div className="input w-full flex gap-[30px]">
         <span className='w-[70px] h-[50px] bg-[#43655A] text-white flex justify-center items-center rounded-[10px]'>+998</span>

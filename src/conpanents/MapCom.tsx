@@ -2,6 +2,7 @@ import MapImg from '../assets/map/map.png'
 import { useEffect, useState } from 'react';
 import MapPicker from './MapPicker';
 import { Link } from 'react-router-dom';
+import { OpenStore } from '../constanta/CardStorage';
 
 interface Location {
   lat: number;
@@ -13,29 +14,29 @@ export default function MapCom() {
   const [location, setLocation] = useState<Location | null>(null);
   const [address, setAddress] = useState<string>("");
 
-async function getAddressFromCoords(lat: number, lon: number) {
-  const res = await fetch(
-    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`
-  );
-  const data = await res.json();
+  // ✅ Zustand store TO‘G‘RI JOYDA
+  const { setPhoneOpen  } = OpenStore();
+  async function getAddressFromCoords(lat: number, lon: number) {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`
+    );
+    const data = await res.json();
 
-  const road = data.address?.road;
-  const neighbourhood = data.address?.neighbourhood;
-  const city = data.address?.city || data.address?.town || data.address?.village;
-  const county = data.address?.county;
+    const road = data.address?.road;
+    const neighbourhood = data.address?.neighbourhood;
+    const city = data.address?.city || data.address?.town || data.address?.village;
+    const county = data.address?.county;
 
-  if (road) {
-    setAddress(road);
-  } else if (neighbourhood) {
-    setAddress(neighbourhood);
-  } else {
-    setAddress(`${city || ""} ${county || ""}`.trim());
-  }''}
+    if (road) {
+      setAddress(road);
+    } else if (neighbourhood) {
+      setAddress(neighbourhood);
+    } else {
+      setAddress(`${city || ""} ${county || ""}`.trim());
+    }
+  }
 
-
-
-
-  // 📌 faqat location o‘zgarganda chaqiladi
+  // 📌 faqat location o‘zgarganda ishlaydi
   useEffect(() => {
     if (location) {
       getAddressFromCoords(location.lat, location.lng);
@@ -56,7 +57,7 @@ async function getAddressFromCoords(lat: number, lon: number) {
         {!openMap && !location && (
           <button
             onClick={() => setOpenMap(true)}
-            className='w-full h-[50px] rounded-[10px] font-medium flex justify-center items-center text-[#43655A] border-2 border-[#43655A] hover:bg-[#43655A] hover:text-white'
+            className='w-full h-[50px] rounded-[10px] font-medium flex justify-center items-center text-[#43655A] border-2 border-[#43655A]'
           >
             📍 Joylashuv kiritish
           </button>
@@ -75,8 +76,13 @@ async function getAddressFromCoords(lat: number, lon: number) {
 
         {location && (
           <div className="flex flex-col gap-4">
-            <Link to="/" className='w-full h-[50px] rounded-[10px] font-medium flex justify-center items-center text-white bg-[#43655A]'>
-               Joylashuv tanlandi
+            {/* ✅ MUAMMO SHU YERDA HAL BO‘LDI */}
+            <Link
+              to="/"
+              onClick={setPhoneOpen}
+              className='w-full h-[50px] rounded-[10px] font-medium flex justify-center items-center text-white bg-[#43655A]'
+            >
+              Joylashuv tanlandi
             </Link>
 
             <p className="text-center text-gray-600">
@@ -92,7 +98,7 @@ async function getAddressFromCoords(lat: number, lon: number) {
                 setLocation(null);
                 setOpenMap(true);
               }}
-              className='w-full h-[50px] rounded-[10px] font-medium flex justify-center items-center text-[#43655A] border-2 border-[#43655A] hover:bg-[#43655A] hover:text-white'
+              className='w-full h-[50px] rounded-[10px] font-medium flex justify-center items-center text-[#43655A] border-2 border-[#43655A]'
             >
               🔄 Joylashuvni o‘zgartirish
             </button>
