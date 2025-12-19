@@ -39,6 +39,8 @@ export interface StoreState {
 interface PhoneState {
   phoneOpen: boolean;
   setPhoneOpen: () => void;
+  isInfo: boolean;
+  setIsInfo: () => void;
 }
 
 export const useStore = create<StoreState>((set, get) => ({
@@ -350,7 +352,7 @@ export const useUnser = create((set)=> ({
   PhoneBooleon: false,
 
   setPhoneNom: (nomer : string) : void => set(() => ({
-    products: [nomer]
+    PhoneNom: [nomer]
   })),
   
 }) )

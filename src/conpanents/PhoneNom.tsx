@@ -1,19 +1,21 @@
-import { useState } from 'react';
+import {  useState } from 'react';
 import { X } from 'lucide-react';
 import { FaPhone } from "react-icons/fa6";
 import {OpenStore} from '../constanta/CardStorage.ts'
 import  Info  from './Info.tsx';
+import {useUnser} from '../constanta/CardStorage.ts'
 
 export default function PhoneInputModal() {
   const [isOpen, setIsOpen] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode] = useState('+998');
-  const {isInfo ,setIsInfo , setPhoneOpen} : any = OpenStore()
-
+  const {isInfo ,setIsInfo , setPhoneOpen  } : any = OpenStore()
+  const {setPhoneNom} : any = useUnser();
   const handlePhoneChange = (e: any) => {
     const value = e.target.value.replace(/\D/g, '');
     if (value.length <= 9) {
       setPhoneNumber(value);
+      console.log(isOpen)
     }
   };
 
@@ -32,7 +34,8 @@ export default function PhoneInputModal() {
       console.log('Telefon nomer:', countryCode + phoneNumber);
       alert(`Telefon nomer saqlandi: ${countryCode} ${formatPhoneNumber(phoneNumber)}`);
       setIsOpen(false);
-      console.log(isOpen);
+      setPhoneOpen()
+      setPhoneNom(phoneNumber);
     }
   };
   function handleInfo(){
@@ -81,7 +84,7 @@ export default function PhoneInputModal() {
         </button>
       </div>
    </div>
-   {isInfo && <Info /> }
+   {isInfo && <Info insideText="Telefon Nomeringiz  kiritishingiz zarur chunki daskavka borsa sizga zakazingiz kelgani haqida aytadi" /> }
     </div>
   );
 }

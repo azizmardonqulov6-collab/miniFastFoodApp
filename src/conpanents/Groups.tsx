@@ -135,7 +135,7 @@ export default function Groups() {
           <h3 className='text-center text-[13px]'>Savatga solib rasmiylashtiring</h3>
         </div>
       </div>}
-       {phoneOpen ? <PhoneNom insideText="Telefon Nomeringiz  kiritishingiz zarur chunki daskavka borsa sizga zakazingiz kelgani haqida aytadi" /> : ""}
+       {phoneOpen ? <PhoneNom  /> : ""}
     </div>
 
   )
