@@ -180,7 +180,7 @@ export const useStore = create<StoreState>((set, get) => ({
           price: 35,
           presence: true,
           ingredients: "Go'sht kotlet, salat, sir",
-          image: "https://pngimg.com/uploads/burger_sandwich/burger_sandwich_PNG4133.png",
+          image: "https://png.pngtree.com/png-clipart/20230325/original/pngtree-juicy-burgers-with-a-transparent-background-png-image_9002761.png",
           Quontity: 1,
         },
         {
@@ -189,7 +189,7 @@ export const useStore = create<StoreState>((set, get) => ({
           price: 32,
           presence: true,
           ingredients: "Tovuq kotlet, salat, sous",
-          image: "https://pngimg.com/uploads/burger_sandwich/burger_sandwich_PNG4131.png",
+          image: "https://png.pngtree.com/png-vector/20240923/ourmid/pngtree-delicious-crispy-chicken-burger-png-image_13890825.png",
           Quontity: 1,
         },
         {
@@ -198,7 +198,7 @@ export const useStore = create<StoreState>((set, get) => ({
           price: 30,
           presence: true,
           ingredients: "Go'sht, ikki qavat sir",
-          image: "https://pngimg.com/uploads/burger_sandwich/burger_sandwich_PNG4129.png",
+          image: "https://png.pngtree.com/png-vector/20240829/ourmid/pngtree-delicious-and-testy-cheese-burger-png-image_13659847.png",
           Quontity: 1,
         },
         {
@@ -207,7 +207,7 @@ export const useStore = create<StoreState>((set, get) => ({
           price: 48,
           presence: true,
           ingredients: "Ikki go'sht kotlet, sir, salat",
-          image: "https://pngimg.com/uploads/burger_sandwich/burger_sandwich_PNG4137.png",
+          image: "https://png.pngtree.com/png-clipart/20231017/original/pngtree-burger-food-png-free-download-png-image_13329458.png",
           Quontity: 1,
         }
       ]
