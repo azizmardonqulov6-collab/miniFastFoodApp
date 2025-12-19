@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import {  X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { FaPhone } from "react-icons/fa6";
 import {OpenStore} from '../constanta/CardStorage.ts'
+import  Info  from './Info.tsx';
 
 export default function PhoneInputModal() {
   const [isOpen, setIsOpen] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode] = useState('+998');
-  const {setIsInfo , setPhoneOpen} : any = OpenStore()
+  const {isInfo ,setIsInfo , setPhoneOpen} : any = OpenStore()
 
   const handlePhoneChange = (e: any) => {
     const value = e.target.value.replace(/\D/g, '');
@@ -35,7 +36,7 @@ export default function PhoneInputModal() {
     }
   };
   function handleInfo(){
-    if(phoneNumber){
+    if(phoneNumber.length === 9){
       setPhoneOpen()
     }else{
       setIsInfo()
@@ -80,6 +81,7 @@ export default function PhoneInputModal() {
         </button>
       </div>
    </div>
+   {isInfo && <Info /> }
     </div>
   );
 }

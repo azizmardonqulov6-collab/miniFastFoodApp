@@ -2,7 +2,6 @@ import { BrowserRouter , Routes , Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Order from './pages/Order'
 import Map from "./pages/Map"
-import { useState } from "react"
 export default function App() {
   return (
     <div className="w-full flex justify-center  bg-white ">

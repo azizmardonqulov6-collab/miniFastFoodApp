@@ -22,8 +22,8 @@ const MySwiperComponent = () => {
         className="myCustomSwiper"
       >
         <SwiperSlide>
-          <div className="w-full h-[280px] flex flex-col text-center justify-start items-center bg-black rounded-[20px] relative pt-[20px]">
-            <div className="flex flex-col gpa-1 relative z-10">
+          <div className="w-full h-[280px] flex flex-col text-center justify-start items-center bg-black rounded-[20px] relative pt-[10px]">
+            <div className="flex flex-col relative ">
               <h3 className='text-white text-xl text-center'>Bir Kishilk Kombo</h3>
               <h4 className='text-[#DADDE2] bg-black rounded-xl'>Dvaynoy chiz burger , free va 0.5 cola</h4>
             </div>
@@ -33,8 +33,8 @@ const MySwiperComponent = () => {
         </SwiperSlide>
         <SwiperSlide>
 
-          <div className="w-full h-[280px] flex flex-col text-center justify-start items-center bg-black rounded-[20px] relative pt-[20px]">
-            <div className="flex flex-col gpa-1 relative z-10">
+          <div className="w-full h-[280px] flex flex-col text-center justify-start items-center bg-black rounded-[20px] z-1 relative pt-[20px]">
+            <div className="flex flex-col gpa-1 relative">
               <h3 className='text-white text-xl text-center'>Bir Kishilk Kombo</h3>
               <h4 className='text-[#DADDE2] bg-black rounded-xl'>Dvaynoy chiz burger , free va 0.5 cola</h4>
             </div>

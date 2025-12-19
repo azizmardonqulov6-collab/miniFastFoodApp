@@ -10,7 +10,6 @@ import { useEffect  } from 'react';
 import {OpenStore} from '../constanta/CardStorage.ts'
 export default function Groups() {
   const tg = (window as any).Telegram.WebApp;
-  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     tg.ready();
@@ -136,8 +135,7 @@ export default function Groups() {
           <h3 className='text-center text-[13px]'>Savatga solib rasmiylashtiring</h3>
         </div>
       </div>}
-       {isOpen && <PhoneNom isOpen ={isOpen } setIsOpen={setIsOpen} /> }
-       {phoneOpen ? <PhoneNom /> : ""}
+       {phoneOpen ? <PhoneNom insideText="Telefon Nomeringiz  kiritishingiz zarur chunki daskavka borsa sizga zakazingiz kelgani haqida aytadi" /> : ""}
     </div>
 
   )

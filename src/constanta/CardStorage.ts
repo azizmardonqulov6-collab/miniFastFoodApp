@@ -366,6 +366,6 @@ export const OpenStore = create<PhoneState>((set) => ({
 
   setIsInfo: () =>
     set((state) => ({
-      phoneOpen: !state.phoneOpen,
+      isInfo: !state.isInfo,
     })),
 }));
