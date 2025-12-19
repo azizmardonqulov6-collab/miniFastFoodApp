@@ -66,7 +66,7 @@ export default function Groups() {
     <div className="w-full flex flex-col gap-10">
       {
         products.map((pro: any) => {
-          return <div key={pro.id} className='Group flex flex-col gap-2 overflow-x-auto'>
+          return <div key={pro.id} className='combolar-container Group flex flex-col gap-2 '>
             <div className="group-name w-full flex gap-4 items-center mb-[50px]"><h2 className='text-[20px]'>{pro.name}</h2> <span><LuMoveRight className='text-2xl' /></span></div>
             <div className="w-fit cards flex gap-3 items-center">
               {pro.items.map((item: any) => {
