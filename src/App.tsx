@@ -9,7 +9,7 @@ export default function App() {
   setTimeout(() =>{
     setLoader(false)
     console.log(loader);
-  } , 2000)
+  } , 3000)
 
   return (
     <div className="w-full flex justify-center  bg-white ">
