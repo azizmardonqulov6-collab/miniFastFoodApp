@@ -37,6 +37,8 @@ export interface StoreState {
   removeOrder: () => void;
 }
 interface PhoneState {
+  orderBottom: boolean;
+  setOrderBottom: () => void;  
   phoneOpen: boolean;
   setPhoneOpen: () => void;
   isInfo: boolean;
@@ -358,6 +360,14 @@ export const useUnser = create((set)=> ({
 }) )
 
 export const OpenStore = create<PhoneState>((set) => ({
+  orderBottom: false,
+
+  setOrderBottom: () =>{
+    set((state) => ({
+      orderBottom: !state.orderBottom
+    }))
+  },
+
   phoneOpen: false,
 
   setPhoneOpen: () =>

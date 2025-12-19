@@ -23,7 +23,7 @@ export default function Groups() {
 
   const [popApp, setPopApp] = useState(false);
   const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
-  const {phoneOpen} : any = OpenStore()
+  const {phoneOpen , orderBottom , setOrderBottom} : any = OpenStore()
   function HandleClick(item: any): void {
     addSelect(item);
     setPopApp(true);
@@ -55,7 +55,7 @@ export default function Groups() {
       console.log(selected.Quantity)
       setPopApp(false)
       getOrderTotal()
-      
+      setOrderBottom()
     })
 
   }
@@ -97,17 +97,17 @@ export default function Groups() {
         <div className="w-[380px] h-screen relative top-0 flex items-end">
           <div onClick={() => HandleDelite()} className="w-full h-full bg-[#00000066] absolute left-0 top-0 cursor-pointercb"></div>
           {selected.map((pro: any) => {
-            return <div key={pro.id} className="PopApp w-full h-fit flex flex-col relative">
+            return <div key={pro.id} className="PopApp w-full h-fit flex flex-col  relative">
               <div className="img w-full py-3 bg-[#DADDE2] rounded-t-[37px] flex justify-center ">
-                <img className='w-[250px] ' src={pro.image} alt={pro.image} />
+                <img className='w-[220px] ' src={pro.image} alt={pro.image} />
               </div>
-              <div className="PopApp-lable w-full  flex flex-col gap-[8px] h-max bg-white pt-[20px] px-[10px] rounded-b-[37px]">
-                <h2 className='text-[22px] text-[#43655A]'>{pro.name}</h2>
-                <h3 className='text-[22px] text-[#889FA5]'>{pro.ingredients}</h3>
+              <div className="PopApp-lable w-full  flex flex-col gap-[3px] h-max bg-white pt-[15px] px-[10px] rounded-b-[37px]">
+                <h2 className='text-[18px] text-[#43655A]'>{pro.name}</h2>
+                <h3 className='text-[17px] text-[#889FA5]'>{pro.ingredients}</h3>
 
-                <span className='text-[21px]'>{pro.price * pro.Quontity} 000 So'm</span>
-                <span className='flex gap-2 text-[21px]'><img className='w-[35px]' src={diriver} alt={diriver} /> Davtavka bepull</span>
-                <div className="w-full flex gap-3 justify-between py-[29px] ">
+                <span className='text-[17px] pt-2 pb-2'>{pro.price * pro.Quontity} 000 So'm</span>
+                <span className='flex  items-center gap-2 text-[17px]'><img className='w-[35px]' src={diriver} alt={diriver} /> Davtavka bepull</span>
+                <div className="w-full flex gap-2 justify-between py-[15px] ">
                   <span className='w-1/2 h-[54px] border-2 border-[#889FA5] rounded-full flex justify-between items-center px-[2px] py-[3px]'>
                     <span onClick={() => HandleDec(pro.id)} className='w-[47px] h-[47px] rounded-full bg-[#8EA39C] flex justify-center items-center text-white cursor-pointer'>-</span>
                     <span>{pro.Quontity}</span>
@@ -122,7 +122,7 @@ export default function Groups() {
 
         </div>
       </div>
-      {order.length > 0 && <div className='order flex flex-col gap-3 fixed bottom-5  w-[360px] '>
+      {orderBottom  && <div className='order flex flex-col gap-3 fixed bottom-5  w-[350px] '>
         <div className="order-rent bg-white border-1 border-[#43655A] px-5 py-3 rounded-[30px] flex flex-col gap-3">
           <div className="flex justify-between items-center cursor-pointer">
             <img className='w-[20px]' src={diriver} alt={diriver} />
