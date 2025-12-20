@@ -8,6 +8,7 @@ import PhoneNom from '../conpanents/PhoneNom.tsx'
 import { Link } from 'react-router-dom';
 import { useEffect  } from 'react';
 import {OpenStore} from '../constanta/CardStorage.ts'
+import UserName from './UserName.tsx';
 export default function Groups() {
   const tg = (window as any).Telegram.WebApp;
 
@@ -23,7 +24,8 @@ export default function Groups() {
 
   const [popApp, setPopApp] = useState(false);
   const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
-  const {phoneOpen , orderBottom , setOrderBottom} : any = OpenStore()
+  const {phoneOpen , orderBottom , setOrderBottomTrue , userNameOpen} : any = OpenStore()
+  console.log("USERnAME" + userNameOpen);
   function HandleClick(item: any): void {
     addSelect(item);
     setPopApp(true);
@@ -55,7 +57,7 @@ export default function Groups() {
       console.log(selected.Quantity)
       setPopApp(false)
       getOrderTotal()
-      setOrderBottom()
+      setOrderBottomTrue()
     })
 
   }
@@ -136,6 +138,7 @@ export default function Groups() {
         </div>
       </div>}
        {phoneOpen ? <PhoneNom  /> : ""}
+       {userNameOpen && <UserName /> } 
     </div>
 
   )

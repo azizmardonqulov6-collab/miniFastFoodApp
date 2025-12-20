@@ -1,5 +1,4 @@
-import loaderGif from '../assets/loader/foodGif.gif'
-
+import loaderGif from '../assets/loader/foodGif.gif' 
 export default function Loader({loader} : any) {
   return (
     <div className={`select w-full h-screen fixed left-0 z-100 flex  justify-center items-end inset-0 pr-[10px] ${loader ? 'top-0' : 'top-[-100vh]'}`}>

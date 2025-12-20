@@ -38,11 +38,14 @@ export interface StoreState {
 }
 interface PhoneState {
   orderBottom: boolean;
-  setOrderBottom: () => void;  
+  setOrderBottomTrue: () => void; 
+  setOrderBottomFalse: () => void;  
   phoneOpen: boolean;
   setPhoneOpen: () => void;
   isInfo: boolean;
   setIsInfo: () => void;
+  userNameOpen:boolean;
+  setUserNameOpen: () => void
 }
 
 export const useStore = create<StoreState>((set, get) => ({
@@ -349,12 +352,15 @@ addToOrder: (item) =>
 }));
 
 export const useUnser = create((set)=> ({
-  user:[],
+  userName:"",
   PhoneNom: "",
   PhoneBooleon: false,
 
   setPhoneNom: (nomer : string) : void => set(() => ({
     PhoneNom: [nomer]
+  })),
+  setUserName: (nomer : string) : void => set(() => ({
+    userName: [nomer]
   })),
   
 }) )
@@ -362,11 +368,15 @@ export const useUnser = create((set)=> ({
 export const OpenStore = create<PhoneState>((set) => ({
   orderBottom: false,
 
-  setOrderBottom: () =>{
-    set((state) => ({
-      orderBottom: !state.orderBottom
-    }))
-  },
+  setOrderBottomTrue: () =>
+    set(() => ({
+      orderBottom: true,
+    })),
+
+  setOrderBottomFalse: () =>
+    set(() => ({
+      orderBottom: false,
+    })),
 
   phoneOpen: false,
 
@@ -374,6 +384,14 @@ export const OpenStore = create<PhoneState>((set) => ({
     set((state) => ({
       phoneOpen: !state.phoneOpen,
     })),
+  
+  userNameOpen: false,
+
+  setUserNameOpen: () =>
+    set((state) => ({
+      userNameOpen: !state.userNameOpen,
+    })),
+
   isInfo: false,
 
   setIsInfo: () =>
