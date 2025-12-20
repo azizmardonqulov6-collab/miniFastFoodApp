@@ -9,7 +9,7 @@ export default function PhoneInputModal() {
   const [isOpen, setIsOpen] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode] = useState('+998');
-  const { isInfo, setIsInfo, setPhoneOpen, setOrderBottomFalse,  setUserNameOpen , userNameOpen }: any = OpenStore()
+  const { isInfo, setIsInfo, setPhoneOpen, setOrderBottomFalse, setUserNameOpen , userNameOpen }: any = OpenStore()
   const { setPhoneNom }: any = useUnser();
   const handlePhoneChange = (e: any) => {
     const value = e.target.value.replace(/\D/g, '');
