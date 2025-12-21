@@ -9,7 +9,12 @@ const WEBAPP_URL = "https://mini-fast-food-app.vercel.app/"; // Frontendingiz de
 const bot = new Telegraf(BOT_TOKEN);
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: '*', // Yoki aniq URL: 'http://localhost:5173'
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 app.use(express.json());
 
 const users = new Map();
@@ -107,6 +112,9 @@ app.post("/send-order", async (req, res) => {
   try {
     const { orderId, userName, PhoneNom, Adres, order } = req.body;
 
+    // PhoneNom ni string ga aylantirish
+    const phoneStr = String(PhoneNom || '');
+    
     let orderText = '';
     if (Array.isArray(order) && order.length > 0) {
       orderText = order.map((item, index) => `
@@ -127,7 +135,7 @@ ${index + 1}. ${item.name}
 
 🆔 ID: ${orderId}
 👤 Ism: ${userName}
-📞 Telefon: ${PhoneNom}
+📞 Telefon: ${phoneStr}
 📍 Manzil: ${Adres}
 
 📋 BUYURTMALAR:
@@ -141,7 +149,7 @@ ${orderText}
 
 🆔 Buyurtma ID: ${orderId}
 👤 Ism: ${userName}
-📞 Telefon: ${PhoneNom}
+📞 Telefon: ${phoneStr}
 📍 Manzil: ${Adres}
 
 📋 BUYURTMALAR:
@@ -156,33 +164,43 @@ ${orderText}
     await bot.telegram.sendMessage(ADMIN_CHAT_ID, adminMessage);
     console.log("✅ Admin ga yuborildi!");
 
-    const cleanPhone = PhoneNom.replace(/\D/g, '');
+    // Telefon raqamini tozalash (faqat raqamlar)
+    const cleanPhone = phoneStr.replace(/\D/g, '');
     let userFound = false;
     
-    for (const [savedPhone, userData] of users.entries()) {
-      const cleanSavedPhone = savedPhone.replace(/\D/g, '');
-      
-      if (cleanSavedPhone.includes(cleanPhone) || cleanPhone.includes(cleanSavedPhone)) {
-        try {
-          console.log(`📤 Foydalanuvchiga (${userData.chatId}) xabar yuborilmoqda...`);
-          await bot.telegram.sendMessage(userData.chatId, userMessage, mainMenu);
-          console.log("✅ Foydalanuvchiga yuborildi!");
-          userFound = true;
-          break;
-        } catch (userError) {
-          console.warn("⚠️ Foydalanuvchiga yuborib bo'lmadi:", userError);
+    console.log(`🔍 Telefon raqami: ${phoneStr} -> Tozalangan: ${cleanPhone}`);
+    
+    if (cleanPhone.length >= 9) { // Telefon raqam mavjud bo'lsa
+      for (const [savedPhone, userData] of users.entries()) {
+        const cleanSavedPhone = savedPhone.replace(/\D/g, '');
+        
+        console.log(`🔍 Tekshirilmoqda: ${savedPhone} -> ${cleanSavedPhone}`);
+        
+        // Telefon raqamlari mos kelsa
+        if (cleanSavedPhone.includes(cleanPhone) || cleanPhone.includes(cleanSavedPhone)) {
+          try {
+            console.log(`📤 Foydalanuvchiga (${userData.chatId}) xabar yuborilmoqda...`);
+            await bot.telegram.sendMessage(userData.chatId, userMessage);
+            console.log("✅ Foydalanuvchiga yuborildi!");
+            userFound = true;
+            break;
+          } catch (userError: any) {
+            console.warn("⚠️ Foydalanuvchiga yuborib bo'lmadi:", userError.message);
+          }
         }
       }
     }
     
     if (!userFound) {
-      console.log("ℹ️ Foydalanuvchi Telegram botga start bosmagan");
+      console.log("ℹ️ Foydalanuvchi topilmadi yoki botga start bosmagan");
+      console.log(`ℹ️ Saqlangan foydalanuvchilar soni: ${users.size}`);
     }
 
     res.json({ success: true });
     
-  } catch (error) {
+  } catch (error: any) {
     console.error("❌ XATOLIK:", error);
+    console.error("❌ Stack trace:", error.stack);
     res.status(500).json({ 
       success: false, 
       error: error instanceof Error ? error.message : String(error)
