@@ -11,11 +11,30 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/**
- * Frontend buyurtma yuboradi
- */
 app.post("/send-order", async (req, res) => {
-  const { orderId, userName, PhoneNom, Adres, userChatId } = req.body;
+  console.log("📥 Request keldi:", req.body);
+  
+try {
+  const { orderId, userName, PhoneNom, Adres, order } = req.body;
+
+  // Buyurtmalarni formatlash
+  let orderText = '';
+  if (Array.isArray(order) && order.length > 0) {
+    orderText = order.map((item, index) => `
+${index + 1}. ${item.name}
+   💰 Narxi: ${item.price} so'm
+   📦 Soni: ${item.Quontity || 1}
+   💵 Jami: ${(item.price * (item.Quontity || 1))} so'm
+   📝 Tarkibi: ${item.ingredients || 'Yo\'q'}
+`).join('\n');
+  } else {
+    orderText = 'Buyurtma ma\'lumotlari topilmadi';
+  }
+
+  // Umumiy summa hisoblash
+  const totalPrice = Array.isArray(order) 
+    ? order.reduce((sum, item) => sum + (item.price * (item.Quontity || 1)), 0)
+    : 0;
 
   const message = `
 🧾 YANGI BUYURTMA
@@ -23,31 +42,52 @@ app.post("/send-order", async (req, res) => {
 🆔 ID: ${orderId}
 👤 Ism: ${userName}
 📞 Telefon: ${PhoneNom}
-📍 Joylashuv:
-${Adres}
+📍 Manzil: ${Adres}
+
+📋 BUYURTMALAR:
+${orderText}
+
+💰 JAMI SUMMA: ${totalPrice} so'm
 `;
 
-  try {
-    // ✅ USER GA
-    await bot.telegram.sendMessage(userChatId, message);
+  console.log("📤 Admin ga xabar yuborilmoqda...");
+  
+  await bot.telegram.sendMessage(ADMIN_CHAT_ID, message);
+  
+  console.log("✅ Xabar muvaffaqiyatli yuborildi!");
 
-    // ✅ ADMIN GA
-    await bot.telegram.sendMessage(ADMIN_CHAT_ID, message);
-
-    res.json({ success: true });
-  } catch (error) {
-    res.status(500).json({ success: false });
+  res.json({ success: true });
+  
+} catch (error) {
+    console.error("❌ XATOLIK:", error);
+    res.status(500).json({ 
+      success: false, 
+      error: error instanceof Error ? error.message : String(error)
+    });
   }
 });
 
-bot.launch();
-app.listen(3000, () =>
-  console.log("🚀 Server 3000-portda ishlayapti")
-);
+// Server ni ishga tushirish
+app.listen(3000, () => {
+  console.log("🚀 Server 3000-portda ishlayapti");
+});
+
+// Bot ni ishga tushirish
+bot.launch()
+  .then(() => {
+    console.log("🤖 Bot muvaffaqiyatli ishga tushdi!");
+  })
+  .catch((err) => {
+    console.error("❌ Bot ishga tushmadi:", err.message);
+  });
+
+// Bot /start komandasi
 bot.start((ctx) => {
   const chatId = ctx.chat.id;
-
   ctx.reply(
-    `Salom 👋\nBuyurtma berishingiz mumkin.\n\n🆔 Sizning ID: ${chatId}`
+    `Salom 👋\nBuyurtma berish uchun websaytga o'ting.\n\n🆔 Sizning Telegram ID: ${chatId}`
   );
 });
+
+process.once('SIGINT', () => bot.stop('SIGINT'));
+process.once('SIGTERM', () => bot.stop('SIGTERM'));

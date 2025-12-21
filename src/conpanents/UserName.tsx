@@ -2,36 +2,56 @@ import { X } from 'lucide-react';
 import { FaRegUser } from "react-icons/fa";
 import { useState } from 'react';
 import Info from './Info';
-import { OpenStore, useUnser } from '../constanta/CardStorage.ts'
+import { OpenStore, useUnser ,useStore } from '../constanta/CardStorage.ts'
 export default function UserName() {
   const [UserName, setUserNam] = useState("");
+  const {order} = useStore()
   const { setIsInfo, isInfo, setUserNameOpen, setPhoneOpen } = OpenStore();
-  const { setUserName, userName, PhoneNom, Adres }: any = useUnser();
-  const handleSubmit = () => {
-    if (UserName.length > 3) {
-      setUserName(UserName)
-      console.log('Ismingiz:', UserName);
-      alert(`Salom  ${userName} sizning zakazingiz qabul qilindi . Siz bilan bilan muharirlar bog'lanadi`);
-      setUserNameOpen()
-      setPhoneOpen()
-      if (userName && PhoneNom && Adres) {
-        fetch("http://localhost:3000/send-order", {
+  const { setUserName, PhoneNom, Adres }: any = useUnser();
+
+const handleSubmit = async () => {
+  if (UserName.length > 3) {
+    if (UserName && PhoneNom && Adres) {
+      try {
+        const response = await fetch("http://localhost:3000/send-order", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json"
+          },
           body: JSON.stringify({
             orderId: Date.now(),
-            userName: userName,
+            userName: UserName,
             PhoneNom: PhoneNom,
             Adres: Adres,
-            userChatId: "123456789" // Telegram ID
+            order: order,
+            userChatId: null // yoki butunlay olib tashlang
           })
-        }).then(res => res.json())
-          .then(console.log);
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('✅ Javob:', data);
+        
+        alert(`Salom ${UserName}, sizning buyurtmangiz qabul qilindi!`);
+        setUserName(UserName);
+        setUserNameOpen();
+        setPhoneOpen();
+        
+      } catch (error: any) {
+        console.error('❌ Xatolik:', error);
+        alert('Buyurtma yuborishda xatolik: ' + error.message);
       }
     } else {
-      alert("Ism mavjud emas")
+      alert("Ma'lumotlar to'liq emas");
     }
-  };
+  } else {
+    alert("Ism kamida 4 ta belgidan iborat bo'lishi kerak");
+  }
+};
   function HandleClose() {
     if (UserName.length > 3) {
       setUserName(UserName);
