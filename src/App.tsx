@@ -3,7 +3,7 @@ import Home from "./pages/Home"
 import Order from './pages/Order'
 import Map from "./pages/Map"
 import Loader from "./conpanents/Loader"
-import { useState , useEffect } from "react"
+import { useState  } from "react"
 export default function App() {
   const [loader , setLoader] = useState<boolean>(true);
   setTimeout(() =>{
@@ -11,16 +11,6 @@ export default function App() {
     console.log(loader);
   } , 3000)
 
-  useEffect(() => {
-  const tg = window.Telegram?.WebApp;
-  if (tg) {
-    tg.ready();
-    const user = tg.initDataUnsafe?.user;
-    if (user) {
-      console.log('Telegram User ID:', user.id);
-    }
-  }
-}, []);
 
   return (
     <div className="w-full flex justify-center  bg-white ">
