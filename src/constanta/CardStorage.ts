@@ -38,13 +38,13 @@ export interface StoreState {
 }
 interface PhoneState {
   orderBottom: boolean;
-  setOrderBottomTrue: () => void; 
-  setOrderBottomFalse: () => void;  
+  setOrderBottomTrue: () => void;
+  setOrderBottomFalse: () => void;
   phoneOpen: boolean;
   setPhoneOpen: () => void;
   isInfo: boolean;
   setIsInfo: () => void;
-  userNameOpen:boolean;
+  userNameOpen: boolean;
   setUserNameOpen: () => void
 }
 
@@ -278,24 +278,24 @@ export const useStore = create<StoreState>((set, get) => ({
   addSelect: (product) => set(() => ({
     selected: [product]
   })),
-addToOrder: (item) =>
-  set((state) => {
-    const exist = state.order.find((i) => i.id === item.id);
+  addToOrder: (item) =>
+    set((state) => {
+      const exist = state.order.find((i) => i.id === item.id);
 
-    if (exist) {
+      if (exist) {
+        return {
+          order: state.order.map((i) =>
+            i.id === item.id
+              ? { ...i, Quontity: i.Quontity + item.Quontity }
+              : i
+          ),
+        };
+      }
+
       return {
-        order: state.order.map((i) =>
-          i.id === item.id
-            ? { ...i, Quontity: i.Quontity + item.Quontity }
-            : i
-        ),
+        order: [...state.order, item],
       };
-    }
-
-    return {
-      order: [...state.order, item],
-    };
-  }),
+    }),
 
   removeFromOrder: (id) => set((state) => ({
     order: state.order.filter(item => item.id !== id)
@@ -351,19 +351,25 @@ addToOrder: (item) =>
 
 }));
 
-export const useUnser = create((set)=> ({
-  userName:"",
+export const useUnser = create((set) => ({
+  userName: "",
   PhoneNom: "",
+  Adres: "",
+  userChatId: "",
+  setUserChatId: (id: number) => set({ userChatId: id }),
   PhoneBooleon: false,
-
-  setPhoneNom: (nomer : string) : void => set(() => ({
+  setPhoneNom: (nomer: string): void => set(() => ({
     PhoneNom: [nomer]
   })),
-  setUserName: (nomer : string) : void => set(() => ({
+  setUserName: (nomer: string): void => set(() => ({
     userName: [nomer]
   })),
-  
-}) )
+  setAddress: (lat: number, lon: number): void =>
+    set({
+      Adres: `https://www.google.com/maps?q=${lat},${lon}`,
+    }),
+
+}))
 
 export const OpenStore = create<PhoneState>((set) => ({
   orderBottom: false,
@@ -384,7 +390,7 @@ export const OpenStore = create<PhoneState>((set) => ({
     set((state) => ({
       phoneOpen: !state.phoneOpen,
     })),
-  
+
   userNameOpen: false,
 
   setUserNameOpen: () =>

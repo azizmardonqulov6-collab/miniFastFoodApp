@@ -2,7 +2,7 @@ import MapImg from '../assets/map/map.png'
 import { useEffect, useState } from 'react';
 import MapPicker from './MapPicker';
 import { Link } from 'react-router-dom';
-import { OpenStore } from '../constanta/CardStorage';
+import { OpenStore , useUnser } from '../constanta/CardStorage';
 
 interface Location {
   lat: number;
@@ -12,10 +12,11 @@ interface Location {
 export default function MapCom() {
   const [openMap, setOpenMap] = useState(false);
   const [location, setLocation] = useState<Location | null>(null);
-  const [address, setAddress] = useState<string>("");
+  const [address, setAddres] = useState<string>("");
 
   // ✅ Zustand store TO‘G‘RI JOYDA
   const { setPhoneOpen  } = OpenStore();
+  const { setAddress , Adres } : any = useUnser()
   async function getAddressFromCoords(lat: number, lon: number) {
     const res = await fetch(
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`
@@ -28,11 +29,11 @@ export default function MapCom() {
     const county = data.address?.county;
 
     if (road) {
-      setAddress(road);
+      setAddres(road);
     } else if (neighbourhood) {
-      setAddress(neighbourhood);
+      setAddres(neighbourhood);
     } else {
-      setAddress(`${city || ""} ${county || ""}`.trim());
+      setAddres(`${city || ""} ${county || ""}`.trim());
     }
   }
 
@@ -40,6 +41,8 @@ export default function MapCom() {
   useEffect(() => {
     if (location) {
       getAddressFromCoords(location.lat, location.lng);
+      setAddress(location.lat, location.lng)
+      console.log(Adres);
     }
   }, [location]);
 

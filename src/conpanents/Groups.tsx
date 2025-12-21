@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { useEffect  } from 'react';
 import {OpenStore} from '../constanta/CardStorage.ts'
 import UserName from './UserName.tsx';
+import Secses from './Secses.tsx';
 export default function Groups() {
   const tg = (window as any).Telegram.WebApp;
 
@@ -66,6 +67,7 @@ export default function Groups() {
 
   return (
     <div className="w-full flex flex-col gap-10">
+      <Secses />
       {
         products.map((pro: any) => {
           return <div key={pro.id} className='combolar-container Group flex flex-col gap-2 '>

@@ -6,7 +6,7 @@ import {OpenStore , useUnser} from '../constanta/CardStorage.ts'
 export default function UserName() {
   const [UserName , setUserNam] = useState("");
   const {setIsInfo , isInfo  ,setUserNameOpen , setPhoneOpen} = OpenStore();
-  const {setUserName , userName} : any = useUnser();
+  const {setUserName , userName } : any = useUnser();
   const handleSubmit = () => {
     if (UserName.length > 3) {
       setUserName(UserName)
@@ -42,7 +42,6 @@ export default function UserName() {
           className='w-full flex-1 h-[50px] bg-[#D9D9D9] text-[#AFA1A1] rounded-[10px] pl-[25px] outline-none' 
           placeholder='Aziz' 
           type="text"
-          maxLength={12}
         />
       </div>
       <div className="button">
