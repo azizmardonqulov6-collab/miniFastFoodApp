@@ -53,7 +53,7 @@ export default function PhoneInputModal() {
 
   return (
     <div className="fixed w-full h-fit bottom-3 left-0 flex justify-center pr-3 ">
-      <div className="w-[365px] PhoneNom flex flex-col gap-[12px] border rounded-[30px] bg-white px-4 py-4">
+      <div className="w-[360px] PhoneNom flex flex-col gap-[12px] border rounded-[30px] bg-white px-4 py-4">
         <div className="flex justify-between items-center">
           <FaPhone />
           <h2 className='text-[14px]'>Telefon Nomeringiz</h2>
