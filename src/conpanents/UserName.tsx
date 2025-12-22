@@ -6,52 +6,44 @@ import { OpenStore, useUnser ,useStore } from '../constanta/CardStorage.ts'
 export default function UserName() {
   const [UserName, setUserNam] = useState("");
   const {order} = useStore()
-  const { setIsInfo, isInfo, setUserNameOpen, setPhoneOpen } = OpenStore();
+  const { setIsInfo, isInfo, setUserNameOpen } = OpenStore();
   const { setUserName, PhoneNom, Adres }: any = useUnser();
 
-const handleSubmit = async () => {
-  if (UserName.length > 3) {
-    if (UserName && PhoneNom && Adres) {
-      try {
-        const response = await fetch("http://localhost:3000/send-order", {
-          method: "POST",
-          headers: { 
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            orderId: Date.now(),
-            userName: UserName,
-            PhoneNom: PhoneNom,
-            Adres: Adres,
-            order: order,
-            userChatId: null // yoki butunlay olib tashlang
-          })
-        });
+  const handleSubmit = async () => {
+    if (UserName.length > 3) {
+      if (UserName && PhoneNom && Adres) {
+        try {
+          const response = await fetch("http://localhost:3000/send-order", {
+            method: "POST",
+            headers: { 
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              orderId: Date.now(),
+              userName: UserName,
+              PhoneNom: PhoneNom,
+              Adres: Adres,
+              order: order, // Savatdagi mahsulotlar
+              userTelegramId: null // Telegram ID
+            })
+          });
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          console.log('✅ Javob:', data);
+          
+          alert(`Salom ${UserName}, buyurtmangiz qabul qilindi!`);
+          
+        } catch (error: any) {
+          console.error('❌ Xatolik:', error);
+          alert('Buyurtma yuborishda xatolik: ' + error.message);
         }
-
-        const data = await response.json();
-        console.log('✅ Javob:', data);
-        
-        alert(`Salom ${UserName}, sizning buyurtmangiz qabul qilindi!`);
-        setUserName(UserName);
-        setUserNameOpen();
-        setPhoneOpen();
-        
-      } catch (error: any) {
-        console.error('❌ Xatolik:', error);
-        alert('Buyurtma yuborishda xatolik: ' + error.message);
       }
-    } else {
-      alert("Ma'lumotlar to'liq emas");
     }
-  } else {
-    alert("Ism kamida 4 ta belgidan iborat bo'lishi kerak");
-  }
-};
+  };
   function HandleClose() {
     if (UserName.length > 3) {
       setUserName(UserName);
