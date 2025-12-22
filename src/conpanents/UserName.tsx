@@ -24,7 +24,7 @@ const handleSubmit = async () => {
             PhoneNom: PhoneNom,
             Adres: Adres,
             order: order,
-            userChatId: null
+            userChatId: null // yoki butunlay olib tashlang
           })
         });
 
@@ -96,4 +96,4 @@ const handleSubmit = async () => {
       {isInfo && <Info insideText=" Ismingizni kiritishingiz zarur chunki daskavka borsa sizni ismingizni bilishi zarur" />}
     </div>
   )
-}
+};
