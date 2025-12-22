@@ -6,7 +6,7 @@ import { OpenStore, useUnser ,useStore } from '../constanta/CardStorage.ts'
 export default function UserName() {
   const [UserName, setUserNam] = useState("");
   const {order} = useStore()
-  const { setIsInfo, isInfo, setUserNameOpen, setPhoneOpen } = OpenStore();
+  const { setIsInfo, isInfo, setUserNameOpen } = OpenStore();
   const { setUserName, PhoneNom, Adres }: any = useUnser();
 
   const handleSubmit = async () => {
