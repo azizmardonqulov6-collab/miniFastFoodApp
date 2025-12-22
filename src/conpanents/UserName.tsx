@@ -6,11 +6,12 @@ import { OpenStore, useUnser ,useStore } from '../constanta/CardStorage.ts'
 export default function UserName() {
   const [UserName, setUserNam] = useState("");
   const {order} = useStore()
-  const { setIsInfo, isInfo, setUserNameOpen } = OpenStore();
+  const { setIsInfo, isInfo, setUserNameOpen, setPhoneOpen } = OpenStore();
   const { setUserName, PhoneNom, Adres }: any = useUnser();
 
   const handleSubmit = async () => {
     if (UserName.length > 3) {
+      setUserNameOpen()
       if (UserName && PhoneNom && Adres) {
         try {
           const response = await fetch("http://localhost:3000/send-order", {
