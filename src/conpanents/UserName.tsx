@@ -3,7 +3,26 @@ import { FaRegUser } from "react-icons/fa";
 import { useState, useEffect } from 'react';
 import Info from './Info';
 import { OpenStore, useUnser, useStore } from '../constanta/CardStorage.ts';
-import type {TelegramWebApp} from '../constanta/Interface.ts'
+
+// Telegram Web App interface
+interface TelegramWebApp {
+  initData: string;
+  initDataUnsafe: {
+    user?: {
+      id: number;
+      first_name: string;
+      last_name?: string;
+      username?: string;
+      language_code?: string;
+    };
+    query_id?: string;
+  };
+  ready: () => void;
+  expand: () => void;
+  close: () => void;
+  showAlert: (message: string, callback?: () => void) => void;
+  showConfirm: (message: string, callback?: (confirmed: boolean) => void) => void;
+}
 
 // Type guard
 const isTelegramWebAppAvailable = (): boolean => {
@@ -18,6 +37,12 @@ const getTelegramWebApp = (): TelegramWebApp | null => {
   return (window as any).Telegram.WebApp;
 };
 
+// Backend URL larni aniqlash
+const BACKEND_URLS = {
+  development: 'http://localhost:3000',
+  production: 'https://your-backend-url.vercel.app' // O'z backend URL'ingizni qo'ying
+};
+
 export default function UserName() {
   const [UserName, setUserNam] = useState("");
   const { order } = useStore();
@@ -25,9 +50,11 @@ export default function UserName() {
   const { setUserName, PhoneNom, Adres } : any = useUnser();
   const [loading, setLoading] = useState(false);
   const [isInTelegram, setIsInTelegram] = useState(false);
+  const [backendUrl, setBackendUrl] = useState(BACKEND_URLS.production);
 
-  // Telegram muhitini aniqlash
+  // Telegram muhitini va backend URL ni aniqlash
   useEffect(() => {
+    // Telegram muhitini tekshirish
     const checkTelegram = () => {
       if (isTelegramWebAppAvailable()) {
         setIsInTelegram(true);
@@ -39,7 +66,22 @@ export default function UserName() {
       }
     };
     
+    // Backend URL ni aniqlash
+    const determineBackendUrl = () => {
+      // Localhost da bo'lsak
+      if (window.location.hostname === 'localhost' || 
+          window.location.hostname === '127.0.0.1' ||
+          window.location.hostname.includes('local')) {
+        setBackendUrl(BACKEND_URLS.development);
+        console.log('🌍 Development mode: Local backend');
+      } else {
+        setBackendUrl(BACKEND_URLS.production);
+        console.log('🌍 Production mode: Remote backend');
+      }
+    };
+    
     checkTelegram();
+    determineBackendUrl();
   }, []);
 
   // Telegram ma'lumotlarini olish
@@ -55,16 +97,6 @@ export default function UserName() {
       lastName: webApp.initDataUnsafe?.user?.last_name || '',
       username: webApp.initDataUnsafe?.user?.username || ''
     };
-  };
-
-  // Backend URL aniqlash
-  const getBackendUrl = () => {
-    // Agar local development bo'lsa
-    if (process.env.NODE_ENV  === 'development' ) {
-      return 'http://localhost:3000';
-    }
-    // Production bo'lsa
-    return 'https://your-backend-url.vercel.app'; // O'z backend URL'ingizni qo'ying
   };
 
   const handleSubmit = async () => {
@@ -96,7 +128,6 @@ export default function UserName() {
     
     try {
       const telegramData = getTelegramData();
-      const backendUrl = getBackendUrl();
       
       const orderData = {
         orderId: Date.now(),
@@ -113,6 +144,7 @@ export default function UserName() {
       };
 
       console.log("📤 Buyurtma yuborilmoqda:", orderData);
+      console.log("🌍 Backend URL:", backendUrl);
 
       const response = await fetch(`${backendUrl}/send-order`, {
         method: "POST",
@@ -135,7 +167,6 @@ export default function UserName() {
       
       if (data.success) {
         const successMessage = `Salom ${UserName}, buyurtmangiz qabul qilindi!\nID: ${data.orderId}`;
-        alert(successMessage)
         
         // Telegram Mini App da
         if (isInTelegram) {
