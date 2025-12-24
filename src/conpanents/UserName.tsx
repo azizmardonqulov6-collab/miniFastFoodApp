@@ -13,7 +13,7 @@ const handleSubmit = async () => {
   if (UserName.length > 3) {
     if (UserName && PhoneNom && Adres) {
       try {
-        const response = await fetch("http://localhost:3000/send-order", {
+        const response = await fetch("https://minifastfoodapp.onrender.com/send-order", {
           method: "POST",
           headers: { 
             "Content-Type": "application/json"
