@@ -117,7 +117,7 @@ ${orderText}
       try {
         await bot.telegram.sendMessage(userTelegramId, userMessage);
         console.log("✅ Foydalanuvchiga Telegram orqali yuborildi!");
-      } catch (userError: any) {
+      } catch (userError) {
         console.warn("⚠️ Foydalanuvchiga yuborib bo'lmadi:", userError.message);
       }
     }
@@ -136,7 +136,7 @@ ${orderText}
             console.log("✅ Saqlangan foydalanuvchiga yuborildi!");
             userFound = true;
             break;
-          } catch (error: any) {
+          } catch (error) {
             console.warn("⚠️ Saqlangan foydalanuvchiga yuborib bo'lmadi:", error.message);
           }
         }
@@ -154,7 +154,7 @@ ${orderText}
       timestamp: new Date().toISOString()
     });
 
-  } catch (error: any) {
+  } catch (error) {
     console.error("❌ XATOLIK:", error);
     res.status(500).json({
       success: false,
