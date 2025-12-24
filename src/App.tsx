@@ -5,6 +5,18 @@ import Map from "./pages/Map"
 import Loader from "./conpanents/Loader"
 import { useState  } from "react"
 export default function App() {
+  fetch('https://minifastfoodapp.onrender.com/test')
+  .then(response => response.json())
+  .then(data => {
+    console.log('✅ Server ishlayapti:', data.message);
+    // Hozir zakaz yuborishingiz mumkin
+  })
+  .catch((error : any) => {
+    console.log('❌ Server hali tayyor emas, 30 soniya kuting...');
+    setTimeout(() => {
+      console.log(error);
+    }, 30000);
+  });
   const [loader , setLoader] = useState<boolean>(true);
   setTimeout(() =>{
     setLoader(false)
