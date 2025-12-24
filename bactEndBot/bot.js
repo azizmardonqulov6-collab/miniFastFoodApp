@@ -10,14 +10,28 @@ const app = express();
 
 // CORS - Telegram Mini App uchun maxsus sozlamalar
 app.use(cors({
-  origin: function (origin, callback) {
-    // Barcha origin'larni qabul qilish (Telegram proxy uchun)
-    callback(null, true);
-  },
+  origin: [
+    'http://localhost:5173', // Vite dev server
+    'http://localhost:5174', // Boshqa portlar
+    'https://telegram-web-app-url', // Telegram Mini App URL (agar bo'lsa)
+    'https://yourdomain.com' // Production domain
+  ],
   credentials: true,
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 86400 // 24 soat
 }));
+
+// ✅ OPTIONS so'rovlarini qayta ishlash (PREFLIGHT uchun)
+app.options('*', cors());
+
+// ✅ Barcha domainlarni ruxsat berish (TEST uchun)
+// app.use(cors()); // Barcha domainlarni qabul qilish
+
+app.use(express.json());
+
+// ... qolgan kodlar
 
 // Preflight so'rovlarini qayta ishlash
 app.options('*', cors());
