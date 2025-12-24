@@ -172,7 +172,7 @@ app.listen(PORT, () => {
 
 // Bot ni ishga tushirish
 const WEBHOOK_PATH = `/telegraf/${BOT_TOKEN}`;
-const WEBHOOK_URL = `https://SENING-RENDER-URL.onrender.com${WEBHOOK_PATH}`;
+const WEBHOOK_URL = `https://minifastfoodapp.onrender.com${WEBHOOK_PATH}`;
 
 // webhook endpoint
 app.use(bot.webhookCallback(WEBHOOK_PATH));

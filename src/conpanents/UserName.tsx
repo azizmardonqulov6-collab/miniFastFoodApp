@@ -13,6 +13,13 @@ const handleSubmit = async () => {
   if (UserName.length > 3) {
     if (UserName && PhoneNom && Adres) {
       try {
+        console.log('📤 Zakaz yuborilmoqda...', {
+          userName: UserName,
+          PhoneNom,
+          Adres,
+          order
+        });
+        
         const response = await fetch("https://minifastfoodapp.onrender.com/send-order", {
           method: "POST",
           headers: { 
@@ -23,20 +30,23 @@ const handleSubmit = async () => {
             userName: UserName,
             PhoneNom: PhoneNom,
             Adres: Adres,
-            order: order,
-            userChatId: null // yoki butunlay olib tashlang
+            order: order
           })
         });
 
+        console.log('📥 Server javobi status:', response.status);
+        
         if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+          const errorText = await response.text();
+          console.error('❌ Server xatosi:', errorText);
+          throw new Error(`Server xatosi: ${response.status}`);
         }
 
         const data = await response.json();
-        console.log('✅ Javob:', data);
+        console.log('✅ Server javobi:', data);
         
         alert(`Salom ${UserName}, sizning buyurtmangiz qabul qilindi!`);
+        
         setUserName(UserName);
         setUserNameOpen();
         setPhoneOpen();
