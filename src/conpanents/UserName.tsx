@@ -9,7 +9,7 @@ export default function UserName() {
   const { setIsInfo, isInfo, setUserNameOpen, setPhoneOpen } = OpenStore();
   const { setUserName, PhoneNom, Adres }: any = useUnser();
 
-  const handleSubmit = async () => {
+ const handleSubmit = async () => {
     // Validatsiya
     if (UserName.length <= 3) {
       alert("Ism kamida 4 ta belgidan iborat bo'lishi kerak");
@@ -26,7 +26,6 @@ export default function UserName() {
       return;
     }
 
-
     try {
       const orderData = {
         orderId: Date.now(),
@@ -40,7 +39,7 @@ export default function UserName() {
       console.log('📤 Buyurtma yuborilmoqda...', orderData);
 
       const response = await fetch(
-        "https://minifastfood500.azizmardonqulov6.workers.dev/send-order",
+        "https://telegram-order-bot.azizmardonqulov6.workers.dev/send-order",
         {
           method: "POST",
           headers: {
