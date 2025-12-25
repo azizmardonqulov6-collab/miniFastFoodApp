@@ -20,7 +20,7 @@ const handleSubmit = async () => {
           order
         });
         
-        const response = await fetch("https://minifastfoodapp.onrender.com/send-order", {
+        const response = await fetch("minifastfood500.azizmardonqulov6.workers.dev/send-order", {
           method: "POST",
           headers: { 
             "Content-Type": "application/json"

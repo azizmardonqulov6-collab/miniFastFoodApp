@@ -13,8 +13,8 @@ app.use(cors({
   origin: [
     'http://localhost:5173', // Vite dev server
     'http://localhost:5174', // Boshqa portlar
-    'https://telegram-web-app-url', // Telegram Mini App URL (agar bo'lsa)
-    'https://yourdomain.com' // Production domain
+    'https://mini-fast-food-app-jhjr.vercel.app/', // Telegram Mini App URL (agar bo'lsa)
+    'minifastfood500.azizmardonqulov6.workers.dev' // Production domain
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
@@ -186,7 +186,7 @@ app.listen(PORT, () => {
 
 // Bot ni ishga tushirish
 const WEBHOOK_PATH = `/telegraf/${BOT_TOKEN}`;
-const WEBHOOK_URL = `https://minifastfoodapp.onrender.com${WEBHOOK_PATH}`;
+const WEBHOOK_URL = `minifastfood500.azizmardonqulov6.workers.dev${WEBHOOK_PATH}`;
 
 // webhook endpoint
 app.use(bot.webhookCallback(WEBHOOK_PATH));
