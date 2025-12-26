@@ -93,9 +93,9 @@ export default function Groups() {
                 </div>
               })}
               <div className="w-[60px] h-[80px] ml-4 mb-8">
-                <div className='w-[50px] h-[50px] flex justify-center items-center rounded-full  border-2 border-[#43655A] hover:bg-[#43655A] hover:text-white '>
+                <Link to={`/cotigory/${pro.id}`} className='w-[50px] h-[50px] flex justify-center items-center rounded-full  border-2 border-[#43655A] hover:bg-[#43655A] hover:text-white '>
                   <LuMoveRight />
-                </div>
+                </Link>
               </div>
             </div>
           </div>
