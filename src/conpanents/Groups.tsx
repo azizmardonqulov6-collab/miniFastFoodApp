@@ -28,7 +28,6 @@ export default function Groups() {
   const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
   const {phoneOpen , orderBottom , setOrderBottomTrue , userNameOpen } : any = OpenStore()
   const [Secsess , setSecses] = useState(false)
-  const [isOpen, setIsOpen] = useState(true);
   console.log("USERnAME" + userNameOpen);
   function HandleClick(item: any): void {
     addSelect(item);
