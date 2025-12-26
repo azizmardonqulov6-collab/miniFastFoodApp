@@ -87,7 +87,7 @@
 }
 .Group{
     width: 100%;
-    cursor: grab;   
+    cursor: pointer;   
 }
 .lable{
   height: 80px;
