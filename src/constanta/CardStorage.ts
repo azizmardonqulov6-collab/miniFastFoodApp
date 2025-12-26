@@ -45,7 +45,9 @@ interface PhoneState {
   isInfo: boolean;
   setIsInfo: () => void;
   userNameOpen: boolean;
-  setUserNameOpen: () => void
+  setUserNameOpen: () => void,
+  isSecses: boolean,
+  setIsSecses: () => void
 }
 
 export const useStore = create<StoreState>((set, get) => ({
@@ -404,4 +406,10 @@ export const OpenStore = create<PhoneState>((set) => ({
     set((state) => ({
       isInfo: !state.isInfo,
     })),
-}));
+
+  isSecses: false,
+  setIsSecses: () =>
+    set((state)  => ({
+      isSecses: !state.isSecses,
+    }))
+  }));

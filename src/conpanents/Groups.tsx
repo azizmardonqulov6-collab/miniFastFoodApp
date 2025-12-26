@@ -25,7 +25,8 @@ export default function Groups() {
 
   const [popApp, setPopApp] = useState(false);
   const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
-  const {phoneOpen , orderBottom , setOrderBottomTrue , userNameOpen} : any = OpenStore()
+  const {phoneOpen , orderBottom , setOrderBottomTrue , userNameOpen } : any = OpenStore()
+  const [Secsess , setSecses] = useState(false)
   console.log("USERnAME" + userNameOpen);
   function HandleClick(item: any): void {
     addSelect(item);
@@ -65,13 +66,14 @@ export default function Groups() {
   console.log(order.length);
 
 
+
   return (
-    <div className="w-full flex flex-col gap-10">
-      <Secses />
+    <div className="w-full flex flex-col gap-10 counter">
+      <Secses Secsess={Secsess} />
       {
         products.map((pro: any) => {
           return <div key={pro.id} className='combolar-container Group flex flex-col gap-2 '>
-            <div className="group-name w-full flex gap-4 items-center mb-[50px]"><h2 className='text-[20px]'>{pro.name}</h2> <span><LuMoveRight className='text-2xl' /></span></div>
+            <div className="group-name w-full flex gap-4 items-ce-nter mb-[50px]"><h2 className='text-[20px]'>{pro.name}</h2> <span><LuMoveRight className='text-2xl' /></span></div>
             <div className="w-fit cards flex gap-3 items-center">
               {pro.items.map((item: any) => {
                 return <div onClick={() => HandleClick(item)} key={item.id} className="card w-[150px] flex flex-col gap-3  ">
@@ -140,7 +142,7 @@ export default function Groups() {
         </div>
       </div>}
        {phoneOpen ? <PhoneNom  /> : ""}
-       {userNameOpen && <UserName /> } 
+       {userNameOpen && <UserName setSecses={setSecses} /> } 
     </div>
 
   )

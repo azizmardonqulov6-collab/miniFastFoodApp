@@ -3,12 +3,18 @@ import { FaRegUser } from "react-icons/fa";
 import { useState } from 'react';
 import Info from './Info';
 import { OpenStore, useUnser ,useStore } from '../constanta/CardStorage.ts'
-export default function UserName() {
+export default function UserName({setSecses} : any) {
   const [UserName, setUserNam] = useState("");
-  const {order} = useStore()
-  const { setIsInfo, isInfo, setUserNameOpen, setPhoneOpen } = OpenStore();
+  const {order , removeOrder} = useStore()
+  const { setIsInfo, isInfo, setUserNameOpen, setPhoneOpen , setIsSecses} = OpenStore();
   const { setUserName, PhoneNom, Adres }: any = useUnser();
 
+function SecsesFunc(){
+  setSecses(true);
+  setTimeout(() => {
+    setSecses(false);
+  }, 4000);
+}
 const handleSubmit = async () => {
   if (UserName.length > 3) {
     if (UserName && PhoneNom && Adres) {
@@ -44,12 +50,13 @@ const handleSubmit = async () => {
 
         const data = await response.json();
         console.log('✅ Server javobi:', data);
-        
-        alert(`Salom ${UserName}, sizning buyurtmangiz qabul qilindi!`);
-        
+
+        setIsSecses();
+        SecsesFunc()
         setUserName(UserName);
         setUserNameOpen();
         setPhoneOpen();
+        removeOrder()
         
       } catch (error: any) {
         console.error('❌ Xatolik:', error);
