@@ -108,11 +108,5 @@ html, body {
   overscroll-behavior-y: none; 
 }
 .combolar-container {
-    overflow-x: scroll;
-    scrollbar-width: none; 
-    -ms-overflow-style: none; 
-}
-
-.combolar-container::-webkit-scrollbar {
-    display: none; 
+    overflow-x: scroll; 
 }
