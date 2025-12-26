@@ -10,6 +10,7 @@ import { useEffect  } from 'react';
 import {OpenStore} from '../constanta/CardStorage.ts'
 import UserName from './UserName.tsx';
 import Secses from './Secses.tsx';
+import UserMenu from '../conpanents/UserMenu.tsx'
 export default function Groups() {
   const tg = (window as any).Telegram.WebApp;
 
@@ -27,6 +28,7 @@ export default function Groups() {
   const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
   const {phoneOpen , orderBottom , setOrderBottomTrue , userNameOpen } : any = OpenStore()
   const [Secsess , setSecses] = useState(false)
+  const [isOpen, setIsOpen] = useState(true);
   console.log("USERnAME" + userNameOpen);
   function HandleClick(item: any): void {
     addSelect(item);
@@ -69,6 +71,7 @@ export default function Groups() {
 
   return (
     <div className="w-full flex flex-col gap-10 counter">
+      <UserMenu  />
       <Secses Secsess={Secsess} />
       {
         products.map((pro: any) => {
