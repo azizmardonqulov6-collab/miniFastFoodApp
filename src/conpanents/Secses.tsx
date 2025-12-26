@@ -3,8 +3,8 @@ import { useUnser } from '../constanta/CardStorage'
 export default function Secses({Secsess} : any) {
   const {userName} : any = useUnser();
   return (
-    <div className={`select w-full fixed h-fit top-[10%]  z-100 justify-center items-end inset-0 pr-2 transition duration-75 ${Secsess ? "fixed  left-[38%]" : "left-[-100%]"}`}>
-      <div className="w-[350px] h-fit relative   flex  items-center">
+    <div className={`select w-full fixed h-fit top-[10%]  z-100 flex justify-center items-center inset-0 pr-2 transition duration-75 ${Secsess ? "  left-[0%]" : "left-[-150%]"}`}>
+      <div className="w-[400px] h-fit relative   flex  items-center">
         <div className="w-full h-50px flex flex-col gap-1 top-0 shadow shadow-gray-200 border-y-1 border-gray-300 bg-white pr-4 p-3">
           <div className="flex gap-3">
             <FaCheckCircle className="text-xl text-green-700" />

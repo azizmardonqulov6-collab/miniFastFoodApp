@@ -4,6 +4,8 @@ import Order from './pages/Order'
 import Map from "./pages/Map"
 import Loader from "./conpanents/Loader"
 import { useState  } from "react"
+import Catigory from "./pages/Catigory"
+import NotFound from "./pages/Notfound"
 export default function App() {
   fetch('https://minifastfoodapp.onrender.com/test')
   .then(response => response.json())
@@ -33,6 +35,9 @@ export default function App() {
               <Route path="/" element={<Home  />} />
               <Route path="/order" element={<Order />} />
               <Route path="/map" element={<Map  />} />
+              <Route path="/cotigory/:id" element={<Catigory />} />
+              <Route path="*" element={<NotFound />}>
+              </Route>
             </Routes>
           </BrowserRouter>
       </div>

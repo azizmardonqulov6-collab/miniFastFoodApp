@@ -36,8 +36,7 @@
 /* ===== NAVIGATION (< >) BUTTONLAR ===== */
 .myCustomSwiper .swiper-button-next,
 .myCustomSwiper .swiper-button-prev {
-  color: white !important;             /* Oq rang */
-  background: #000000b5;       /* Yarim qora fon */
+  color: white !important;   
   width: 35px;
   height: 35px;
   border-radius: 50%;

@@ -73,7 +73,7 @@ export default function Groups() {
       {
         products.map((pro: any) => {
           return <div key={pro.id} className='combolar-container Group flex flex-col gap-2 '>
-            <div className="group-name w-full flex gap-4 items-ce-nter mb-[50px]"><h2 className='text-[20px]'>{pro.name}</h2> <span><LuMoveRight className='text-2xl' /></span></div>
+            <Link to={`/cotigory/${pro.id}`} className="group-name w-full flex gap-4 items-ce-nter mb-[50px]"><h2 className='text-[20px]'>{pro.name}</h2> <span><LuMoveRight className='text-2xl' /></span></Link>
             <div className="w-fit cards flex gap-3 items-center">
               {pro.items.map((item: any) => {
                 return <div onClick={() => HandleClick(item)} key={item.id} className="card w-[150px] flex flex-col gap-3  ">

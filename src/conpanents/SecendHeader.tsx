@@ -3,7 +3,7 @@ import BackImg from '../assets/image/rent/mingcute_left-fill.png'
 import { Link } from "react-router-dom"
 export default function SecendHeader({ handleBack, handleClearCart, name }: any | string) {
     return (
-        <div className="w-full">
+        <div className="w-full h-fit">
             <h1 className='text-center text-gray-300 pt-2 pb-5'>@fastfood500bot</h1>
             <div className="w-full bg-white  flex items-center justify-between border-b-2 border-[#A9BCB6] pb-4">
                 <Link to="/"
@@ -19,7 +19,7 @@ export default function SecendHeader({ handleBack, handleClearCart, name }: any 
                 >
                     <img className='w-[25px]' src={deleteImg} alt={deleteImg} />
                 </button>
-                    : <span></span>}
+                    : <span className='w-[25px]'></span>}
             </div>
         </div>
     )
