@@ -22,8 +22,8 @@ export default function Groups() {
     }, [tg]);
 
     const [popApp, setPopApp] = useState(false);
-    const [selectCot, setSelectCot] = useState<any[]>([]); 
-    const [catName, setCatName] = useState<String>(""); 
+    const [selectCot, setSelectCot] = useState<any[]>([]);
+    const [catName, setCatName] = useState<String>("");
     const { products, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
     const { phoneOpen, orderBottom, setOrderBottomTrue }: any = OpenStore()
 
@@ -86,18 +86,18 @@ export default function Groups() {
                         <div className='combolar-container Group flex flex-col gap-2 '>
                             <div className="w-fit cards flex flex-wrap gap-3 items-center justify-center">
                                 {selectCot.map((item: any) => {
-                                    return <div key={item.id}  onClick={() => HandleClick(item)}  className='w-[150px] h-fit flex flex-col gap-4 pt-4 pt-[70px]'>
-                                            <div className="flex flex-col justify-center items-center gap-5 border-3 border-[#889FA5] rounded-[16px]">
-                                                <div className="img h-[50px]">
-                                                    <img className='w-[150px] h-fit relative -top-[60px]' src={item.image} alt={item.name} />
-                                                </div>
-                                                <div className="lable flex flex-col py-4 gap-1 text-center px-2">
-                                                    <h3 className='text-[11px] text-black w-full'>{item.ingredients}</h3>
-                                                    <h2 className='text-[12px] font-bold w-full'>{item.name}</h2>
-                                                </div>
+                                    return <div key={item.id} onClick={() => HandleClick(item)} className='w-[150px] h-fit flex flex-col gap-4 pt-4 pt-[70px]'>
+                                        <div className="flex flex-col justify-center items-center gap-5 border-3 border-[#889FA5] rounded-[16px]">
+                                            <div className="img h-[50px]">
+                                                <img className='w-[150px] relative -top-[60px]' src={item.image} alt={item.image} />
                                             </div>
-                                            <span className='w-full py-3 bg-[#43655A] flex justify-center items-center text-white rounded-[16px]'>{item.price} 000</span>
+                                            <div className="lable flex flex-col py-4 gap-1 text-center px-2">
+                                                <h3 className='text-[11px] text-black w-full'>{item.ingredients}</h3>
+                                                <h2 className='text-[12px] font-bold w-full'>{item.name}</h2>
+                                            </div>
                                         </div>
+                                        <span className='w-full py-3 bg-[#43655A] flex justify-center items-center text-white rounded-[16px]'>{item.price} 000</span>
+                                    </div>
                                 })}
                             </div>
                         </div>

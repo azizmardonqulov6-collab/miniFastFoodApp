@@ -6,6 +6,7 @@ import Loader from "./conpanents/Loader"
 import { useState  } from "react"
 import Catigory from "./pages/Catigory"
 import NotFound from "./pages/Notfound"
+import UserProfill from './pages/UserProfill'
 export default function App() {
   fetch('https://minifastfoodapp.onrender.com/test')
   .then(response => response.json())
@@ -36,6 +37,7 @@ export default function App() {
               <Route path="/order" element={<Order />} />
               <Route path="/map" element={<Map  />} />
               <Route path="/cotigory/:id" element={<Catigory />} />
+              <Route path="userprofill/:id" element={<UserProfill />} />
               <Route path="*" element={<NotFound />}>
               </Route>
             </Routes>
