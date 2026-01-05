@@ -4,10 +4,10 @@ import { useStore } from '../constanta/CardStorage.ts'
 import diriver from '../assets/image/diriver.png'
 import bag from '../assets/image/bag.png'
 import bagWhite from '../assets/image/bag-white.png'
-import PhoneNom from '../conpanents/PhoneNom.tsx'
+import PhoneNom1 from '../conpanents/PhoneNom.tsx'
 import { Link } from 'react-router-dom';
 import { useEffect  } from 'react';
-import {OpenStore} from '../constanta/CardStorage.ts'
+import {OpenStore , useUnser} from '../constanta/CardStorage.ts'
 import UserName from './UserName.tsx';
 import Secses from './Secses.tsx';
 import UserMenu from '../conpanents/UserMenu.tsx'
@@ -27,9 +27,11 @@ export default function Groups() {
 
   const [popApp, setPopApp] = useState(false);
   const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
-  const {phoneOpen , orderBottom , setOrderBottomTrue , userNameOpen ,onSecses } : any = OpenStore()
+  const { orderBottom , setOrderBottomTrue, onSecses , Collect } : any = OpenStore()
+  const {userName , PhoneNom , Adres} : any  = useUnser()
   const [Secsess , setSecses] = useState(false)
-  console.log("USERnAME" + userNameOpen);
+  console.log(Collect , onSecses);
+
   function HandleClick(item: any): void {
     addSelect(item);
     setPopApp(true);
@@ -144,9 +146,9 @@ export default function Groups() {
           <h3 className='text-center text-[13px]'>Savatga solib rasmiylashtiring</h3>
         </div>
       </div>}
-       {phoneOpen ? <PhoneNom  /> : ""}
-       {userNameOpen && <UserName  /> } 
-       {onSecses && <OnSecses setSecses={setSecses} />}
+       {Collect && !PhoneNom && <PhoneNom1  /> }
+       {Collect && !userName && <UserName  /> } 
+       {onSecses && PhoneNom && userName && Adres ? <OnSecses setSecses={setSecses} /> : ""}
     </div>
 
   )

@@ -5,12 +5,11 @@ import Info from './Info';
 import { OpenStore, useUnser } from '../constanta/CardStorage.ts'
 export default function UserName() {
   const [UserName, setUserNam] = useState("");
-  const { setIsInfo, isInfo, setOnsecses} = OpenStore();
+  const { setIsInfo, isInfo , setUserNameOpen} = OpenStore();
   const { setUserName , userName , PhoneNom}: any = useUnser();
 
 const handleSubmit = () => {
   if (UserName.length > 3) {
-    setOnsecses()
     setUserName(UserName);
     console.log(userName , PhoneNom)
   } else {
@@ -18,8 +17,9 @@ const handleSubmit = () => {
   }
 };
   function HandleClose() {
-    if (UserName.length > 3) {
+    if (userName) {
       setUserName(UserName);
+      setUserNameOpen()
     } else {
       setIsInfo()
     }

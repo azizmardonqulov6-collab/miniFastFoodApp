@@ -8,8 +8,8 @@ console.log(onSecses)
 function SecsesFunc(){
   setSecses(true);
   setTimeout(() => {
-    setSecses(false);
-  }, 4000);
+  setSecses(false);
+  }, 7000);
 }
 const handleSubmit = async () => {
     if (userName && PhoneNom && Adres && order) {
@@ -66,6 +66,7 @@ const handleSubmit = async () => {
       setOnsecses()
       removeOrder()
       setPhoneOpen()
+      setUserNameOpen()
     } else {
       setOnsecses()
       removeOrder()

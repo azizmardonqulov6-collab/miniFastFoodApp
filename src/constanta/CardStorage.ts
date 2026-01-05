@@ -52,6 +52,8 @@ interface PhoneState {
   setIsMenu: () => void
   onSecses: boolean,
   setOnsecses: () => void
+  Collect: boolean,
+  setCollect: () => void
 }
 
 export const useStore = create<StoreState>((set, get) => ({
@@ -426,5 +428,10 @@ export const OpenStore = create<PhoneState>((set) => ({
     setOnsecses: () =>
     set((state)  => ({
       onSecses: !state.onSecses,
+    })),
+    Collect: false,
+    setCollect: () =>
+    set((state)  => ({
+      Collect: !state.Collect,
     })),
   }));

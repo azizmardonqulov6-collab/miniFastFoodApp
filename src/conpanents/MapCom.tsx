@@ -15,7 +15,7 @@ export default function MapCom() {
   const [address, setAddres] = useState<string>("");
 
   // ✅ Zustand store TO‘G‘RI JOYDA
-  const { setPhoneOpen  } = OpenStore();
+  const {setOnsecses , setOrderBottomFalse , setCollect} = OpenStore();
   const { setAddress , Adres } : any = useUnser()
   async function getAddressFromCoords(lat: number, lon: number) {
     const res = await fetch(
@@ -45,6 +45,12 @@ export default function MapCom() {
       console.log(Adres);
     }
   }, [location]);
+
+  const handleCLick = () =>{
+      setOnsecses()
+      setOrderBottomFalse()
+      setCollect()
+  }
 
   return (
     <div className='w-full h-screen flex flex-col gap-14'>
@@ -82,7 +88,7 @@ export default function MapCom() {
             {/* ✅ MUAMMO SHU YERDA HAL BO‘LDI */}
             <Link
               to="/"
-              onClick={setPhoneOpen}
+              onClick={handleCLick}
               className='w-full h-[50px] rounded-[10px] font-medium flex justify-center items-center text-white bg-[#43655A]'
             >
               Joylashuv tanlandi
