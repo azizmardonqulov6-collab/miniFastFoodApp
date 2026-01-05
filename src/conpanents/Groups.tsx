@@ -11,6 +11,7 @@ import {OpenStore} from '../constanta/CardStorage.ts'
 import UserName from './UserName.tsx';
 import Secses from './Secses.tsx';
 import UserMenu from '../conpanents/UserMenu.tsx'
+import OnSecses from './OnSecses.tsx'
 export default function Groups() {
   const tg = (window as any).Telegram.WebApp;
 
@@ -26,7 +27,7 @@ export default function Groups() {
 
   const [popApp, setPopApp] = useState(false);
   const { products, order, addToOrder, addSelect, selected, increaseQuantity, DescreaseQuantity, getOrderTotal }: any = useStore();
-  const {phoneOpen , orderBottom , setOrderBottomTrue , userNameOpen } : any = OpenStore()
+  const {phoneOpen , orderBottom , setOrderBottomTrue , userNameOpen ,onSecses } : any = OpenStore()
   const [Secsess , setSecses] = useState(false)
   console.log("USERnAME" + userNameOpen);
   function HandleClick(item: any): void {
@@ -144,7 +145,8 @@ export default function Groups() {
         </div>
       </div>}
        {phoneOpen ? <PhoneNom  /> : ""}
-       {userNameOpen && <UserName setSecses={setSecses} /> } 
+       {userNameOpen && <UserName  /> } 
+       {onSecses && <OnSecses setSecses={setSecses} />}
     </div>
 
   )

@@ -2,69 +2,17 @@ import { X } from 'lucide-react';
 import { FaRegUser } from "react-icons/fa";
 import { useState } from 'react';
 import Info from './Info';
-import { OpenStore, useUnser ,useStore } from '../constanta/CardStorage.ts'
-export default function UserName({setSecses} : any) {
+import { OpenStore, useUnser } from '../constanta/CardStorage.ts'
+export default function UserName() {
   const [UserName, setUserNam] = useState("");
-  const {order , removeOrder} = useStore()
-  const { setIsInfo, isInfo, setUserNameOpen, setPhoneOpen , setIsSecses} = OpenStore();
-  const { setUserName, PhoneNom, Adres }: any = useUnser();
+  const { setIsInfo, isInfo, setOnsecses} = OpenStore();
+  const { setUserName , userName , PhoneNom}: any = useUnser();
 
-function SecsesFunc(){
-  setSecses(true);
-  setTimeout(() => {
-    setSecses(false);
-  }, 4000);
-}
-const handleSubmit = async () => {
+const handleSubmit = () => {
   if (UserName.length > 3) {
-    if (UserName && PhoneNom && Adres) {
-      try {
-        console.log('📤 Zakaz yuborilmoqda...', {
-          userName: UserName,
-          PhoneNom,
-          Adres,
-          order
-        });
-        
-        const response = await fetch("https://minifastfood500.azizmardonqulov6.workers.dev/send-order", {
-          method: "POST",
-          headers: { 
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            orderId: Date.now(),
-            userName: UserName,
-            PhoneNom: PhoneNom,
-            Adres: Adres,
-            order: order
-          })
-        });
-
-        console.log('📥 Server javobi status:', response.status);
-        
-        if (!response.ok) {
-          const errorText = await response.text();
-          console.error('❌ Server xatosi:', errorText);
-          throw new Error(`Server xatosi: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log('✅ Server javobi:', data);
-
-        setIsSecses();
-        SecsesFunc()
-        setUserName(UserName);
-        setUserNameOpen();
-        setPhoneOpen();
-        removeOrder()
-        
-      } catch (error: any) {
-        console.error('❌ Xatolik:', error);
-        alert('Buyurtma yuborishda xatolik: ' + error.message);
-      }
-    } else {
-      alert("Ma'lumotlar to'liq emas");
-    }
+    setOnsecses()
+    setUserName(UserName);
+    console.log(userName , PhoneNom)
   } else {
     alert("Ism kamida 4 ta belgidan iborat bo'lishi kerak");
   }
@@ -72,7 +20,6 @@ const handleSubmit = async () => {
   function HandleClose() {
     if (UserName.length > 3) {
       setUserName(UserName);
-      setUserNameOpen()
     } else {
       setIsInfo()
     }
