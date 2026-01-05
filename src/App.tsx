@@ -7,6 +7,7 @@ import { useState  } from "react"
 import Catigory from "./pages/Catigory"
 import NotFound from "./pages/Notfound"
 import UserProfill from './pages/UserProfill'
+import About from './pages/AboutMe'
 export default function App() {
   fetch('https://minifastfoodapp.onrender.com/test')
   .then(response => response.json())
@@ -38,6 +39,7 @@ export default function App() {
               <Route path="/map" element={<Map  />} />
               <Route path="/cotigory/:id" element={<Catigory />} />
               <Route path="userprofill/:id" element={<UserProfill />} />
+              <Route path="about" element={<About />} />
               <Route path="*" element={<NotFound />}>
               </Route>
             </Routes>

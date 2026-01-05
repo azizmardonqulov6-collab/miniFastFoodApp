@@ -5,6 +5,7 @@ import orderIcon from '../assets/menu/order.png'
 import infoIcon from '../assets/menu/info.png'
 import phoneIcon from '../assets/menu/phone.png'
 import { OpenStore } from '../constanta/CardStorage'
+import { Link } from 'react-router-dom'
 const SideMenuExact = () => {
     const {isMenu , setIsMenu} : any = OpenStore();
     return (
@@ -35,34 +36,34 @@ const SideMenuExact = () => {
                     {/* Menu items list - rasmdagi tartibda */}
                     <div className="w-full flex flex-col gap-3">
                         {/* Item 1 with number */}
-                        <div className="w-full py-4 px-1 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer">
+                        <Link to="userprofill/unserName" className="w-full py-4 px-1 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer">
                             <div className="flex items-center gap-3">
                                 <span className="text-gray-500 text-sm w-8"><img src={userIcon} alt={userIcon} /></span>
                                 <span className="text-gray-800 text-[16px]">Shaxsiy Ma'lumotlarim</span>
                             </div>
-                        </div>
+                        </Link>
 
                         {/* Other items without numbers */}
-                        <div className=" py-4 px-1 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer ">
+                        <Link to="userprofill/order" className=" py-4 px-1 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer ">
                             <div className="flex items-center gap-3">
                                 <span className="text-gray-500 text-sm w-6"><img src={orderIcon} alt={orderIcon} /></span>
                                 <span className="text-gray-800">Buyurtmalarim</span>
                             </div>
-                        </div>
+                        </Link>
 
-                        <div className="w-full py-4 px-1 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer ">
+                        <Link to="userprofill/locate" className="w-full py-4 px-1 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer ">
                             <div className="flex items-center gap-3">
                                 <span className="text-gray-500 text-sm w-6"><img src={mapIcon} alt={mapIcon} /></span>
                                 <span className="text-gray-800">Joylashuvim</span>
                             </div>
-                        </div>
+                        </Link>
 
-                        <div className="w-full py-4 px-1 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer">
+                        <Link to="about" className="w-full py-4 px-1 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer">
                             <div className="flex items-center gap-3">
                                 <span className="text-gray-500 text-sm w-6"><img src={infoIcon} alt={infoIcon} /></span>
                                 <span className="text-gray-800">Biz Haqimizda</span>
                             </div>
-                        </div>
+                        </Link>
 
                         {/* Contact with phone number */}
                         <div className="w-full py-2 px-1 border border-gray-200 hover:bg-gray-200 rounded-lg transition-colors cursor-pointer  flex items-center gap-2">
